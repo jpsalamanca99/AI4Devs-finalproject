@@ -1,0 +1,34 @@
+@startuml architectureDiagram
+!define RECTANGLE class
+
+RECTANGLE "Frontend: React Application" as Frontend {
+    + Registration Form
+    + Tournament Dashboard
+    + Match Scheduler
+    + Group Standings
+}
+
+RECTANGLE "API Layer: Node.js / Express Server" as APILayer {
+    + Player Routes
+    + Tournament Routes
+    + Match Routes
+    + Group Routes
+}
+
+RECTANGLE "Database: MongoDB/PostgreSQL" as Database {
+    + Players
+    + Tournaments
+    + Matches
+    + Groups
+}
+
+RECTANGLE "External Services" as ExternalServices {
+    + Authentication Service
+    + Hosting Services
+}
+
+Frontend -down-> APILayer : RESTful API calls
+APILayer -down-> Database : CRUD operations
+ExternalServices -down-> APILayer : Optional Integration
+
+@enduml
