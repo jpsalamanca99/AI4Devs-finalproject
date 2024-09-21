@@ -95,7 +95,7 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 
 ## 4. Especificación de la API
 
-> Si tu backend se comunica a través de API, describe los endpoints principales (máximo 3) en formato OpenAPI. Opcionalmente puedes añadir un ejemplo de petición y de respuesta para mayor claridad
+[a relative link](documentation/other_file.md)
 
 ---
 

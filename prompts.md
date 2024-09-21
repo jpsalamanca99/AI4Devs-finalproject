@@ -131,8 +131,6 @@ Creating a tournament organizer with the specified format is an exciting project
 
 This roadmap provides a comprehensive approach to developing your tournament organizer. Good luck with your project! If you have any specific questions along the way, feel free to ask!
 
-**Prompt 3:**
-
 ---
 
 ## 2. Arquitectura del Sistema
@@ -379,17 +377,329 @@ Match ||--|| Player : "is played by"
 
 ```
 
-**Prompt 3:**
-
 ---
 
 ### 4. Especificación de la API
-
+Estos prompts siguen la conversación del apartado 3
 **Prompt 1:**
+given the above entities generate a swagger document with the CRUD services for the organizer, tournament and player entities
 
-**Prompt 2:**
+**Respuesta**
+```
+openapi: 3.0.1
+info:
+  title: Tournament Organizer API
+  description: API for managing tournaments, organizers, and players
+  version: 1.0.0
 
-**Prompt 3:**
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+  /organizers:
+    get:
+      summary: Get all organizers
+      responses:
+        '200':
+          description: A list of organizers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organizer'
+
+    post:
+      summary: Create a new organizer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organizer'
+      responses:
+        '201':
+          description: Organizer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organizer'
+
+  /organizers/{id}:
+    get:
+      summary: Get a specific organizer
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      responses:
+        '200':
+          description: Organizer found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organizer'
+        '404':
+          description: Organizer not found
+
+    put:
+      summary: Update a specific organizer
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organizer'
+      responses:
+        '200':
+          description: Organizer updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organizer'
+        '404':
+          description: Organizer not found
+
+    delete:
+      summary: Delete a specific organizer
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      responses:
+        '204':
+          description: Organizer deleted successfully
+        '404':
+          description: Organizer not found
+
+  /tournaments:
+    get:
+      summary: Get all tournaments
+      responses:
+        '200':
+          description: A list of tournaments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tournament'
+
+    post:
+      summary: Create a new tournament
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+      responses:
+        '201':
+          description: Tournament created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+
+  /tournaments/{id}:
+    get:
+      summary: Get a specific tournament
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      responses:
+        '200':
+          description: Tournament found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '404':
+          description: Tournament not found
+
+    put:
+      summary: Update a specific tournament
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+      responses:
+        '200':
+          description: Tournament updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '404':
+          description: Tournament not found
+
+    delete:
+      summary: Delete a specific tournament
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      responses:
+        '204':
+          description: Tournament deleted successfully
+        '404':
+          description: Tournament not found
+
+  /players:
+    get:
+      summary: Get all players
+      responses:
+        '200':
+          description: A list of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+
+    post:
+      summary: Create a new player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '201':
+          description: Player created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+
+  /players/{id}:
+    get:
+      summary: Get a specific player
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      responses:
+        '200':
+          description: Player found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '404':
+          description: Player not found
+
+    put:
+      summary: Update a specific player
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '200':
+          description: Player updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '404':
+          description: Player not found
+
+    delete:
+      summary: Delete a specific player
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: uuid
+      responses:
+        '204':
+          description: Player deleted successfully
+        '404':
+          description: Player not found
+
+components:
+  schemas:
+    Organizer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nid:
+          type: string
+      required:
+        - id
+        - name
+        - nid
+
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - date
+
+    Player:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+      required:
+        - id
+        - name
+
+```
 
 ---
 
