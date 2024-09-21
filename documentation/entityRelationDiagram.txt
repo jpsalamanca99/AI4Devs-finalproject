@@ -1,0 +1,49 @@
+@startuml
+entity "Organizer" as Organizer {
+    + id : uuid
+    + name : string
+    + nid : string
+}
+
+entity "Tournament" as Tournament {
+    + id : uuid
+    + name : string
+    + date : timestamp
+}
+
+entity "Group" as Group {
+    + id : uuid
+    + group_number : int
+    + table : string
+}
+
+entity "Bracket" as Bracket {
+    + id : uuid
+    + stage : string
+    + order : integer
+}
+
+entity "Player" as Player {
+    + id : uuid
+    + name : string
+}
+
+entity "Match" as Match {
+    + id : uuid
+    + player_a_set_one : int
+    + player_a_set_two : int
+    + player_a_set_three : int
+    + player_b_set_one : int
+    + player_b_set_two : int
+    + player_b_set_three : int
+}
+
+Organizer ||--o{ Tournament : "has many"
+Tournament ||--o{ Group : "has many"
+Tournament ||--o{ Bracket : "has many"
+Tournament ||--o{ Player : "has many"
+Player }o--o{ Tournament : "participates in"
+Player ||--o{ Match : "plays"
+Match ||--|| Player : "is played by"
+
+@enduml
