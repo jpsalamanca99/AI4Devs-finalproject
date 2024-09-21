@@ -85,8 +85,7 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 
 ### **3.1. Diagrama del modelo de datos:**
 
-> Recomendamos usar mermaid para el modelo de datos, y utilizar todos los parámetros que permite la sintaxis para dar el máximo detalle, por ejemplo las claves primarias y foráneas.
-
+![alternative text](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jpsalamanca99/AI4Devs-finalproject/refs/heads/main/documentation/entityRelationDiagram.txt)
 
 ### **3.2. Descripción de entidades principales:**
 

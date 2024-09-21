@@ -138,12 +138,47 @@ This roadmap provides a comprehensive approach to developing your tournament org
 ## 2. Arquitectura del Sistema
 
 ### **2.1. Diagrama de arquitectura:**
+Los siguientes prompts siguen la conversación del apartado 1
 
-**Prompt 1:**
+**Prompt 1:** using plantUML generate an architecture diagram based on the project road map
 
-**Prompt 2:**
+**Respuesta:**
+```
+@startuml
+!define RECTANGLE class
 
-**Prompt 3:**
+RECTANGLE "Frontend: React Application" as Frontend {
+    + Registration Form
+    + Tournament Dashboard
+    + Match Scheduler
+    + Group Standings
+}
+
+RECTANGLE "API Layer: Node.js / Express Server" as APILayer {
+    + Player Routes
+    + Tournament Routes
+    + Match Routes
+    + Group Routes
+}
+
+RECTANGLE "Database: MongoDB/PostgreSQL" as Database {
+    + Players
+    + Tournaments
+    + Matches
+    + Groups
+}
+
+RECTANGLE "External Services" as ExternalServices {
+    + Authentication Service
+    + Hosting Services
+}
+
+Frontend -down-> APILayer : RESTful API calls
+APILayer -down-> Database : CRUD operations
+ExternalServices -down-> APILayer : Optional Integration
+
+@enduml
+```
 
 ### **2.2. Descripción de componentes principales:**
 
@@ -188,10 +223,161 @@ This roadmap provides a comprehensive approach to developing your tournament org
 ---
 
 ### 3. Modelo de Datos
+Los siguientes prompts siguen la conversación del apartado 2.1
 
 **Prompt 1:**
+For the data model I have the following entities:
+
+- organizer
+- tournament
+- player
+- match
+- group
+- breacket
+
+The relations are as follows:
+
+- An organizer has many tournaments
+- A tournament has many groups
+- A group belongs only to one tournament
+- A tournament has many brackets
+- A bracket belongs to only one tournament
+- A tournament has many players
+- Many playes can paticipate in many tournaments
+- A player plays one match
+- A match is played by one player
+
+Given the above entities and relations generate a plantUML entity relation diagram
+
+**Respuesta:**
+```
+@startuml
+entity "Organizer" as Organizer {
+    + id : int
+    + name : string
+}
+
+entity "Tournament" as Tournament {
+    + id : int
+    + name : string
+    + date : date
+}
+
+entity "Group" as Group {
+    + id : int
+    + group_number : int
+}
+
+entity "Bracket" as Bracket {
+    + id : int
+}
+
+entity "Player" as Player {
+    + id : int
+    + name : string
+}
+
+entity "Match" as Match {
+    + id : int
+}
+
+Organizer ||--o{ Tournament : "has many"
+Tournament ||--o{ Group : "has many"
+Tournament ||--o{ Bracket : "has many"
+Tournament ||--o{ Player : "has many"
+Player }o--o{ Tournament : "participates in"
+Player ||--o{ Match : "plays"
+Match ||--|| Player : "is played by"
+
+@enduml
+
+```
 
 **Prompt 2:**
+refactor the entity-relation diagram to change the entities as follows:
+
+* organizer:
+  - id of type uuid
+  - name of type string
+  - nid of type string
+
+* tournament
+  - id of type uuid
+  - name of type string
+  - date of type timestamp
+
+* gorup
+  - id of type uuid
+  - group_number of type int
+  - table of type string
+
+* bracket
+  - id of type uuid
+  - stage of type string
+  - order of type integer
+
+* match
+  - id of type uuid
+  - player_a_set_one of type int
+  - player_a_set_two of type int
+  - player_a_set_three of type int
+  - player_b_set_one of type int
+  - player_b_set_two of type int
+  - player_b_set_three of type int
+
+**Respuesta:**
+```
+@startuml
+entity "Organizer" as Organizer {
+    + id : uuid
+    + name : string
+    + nid : string
+}
+
+entity "Tournament" as Tournament {
+    + id : uuid
+    + name : string
+    + date : timestamp
+}
+
+entity "Group" as Group {
+    + id : uuid
+    + group_number : int
+    + table : string
+}
+
+entity "Bracket" as Bracket {
+    + id : uuid
+    + stage : string
+    + order : integer
+}
+
+entity "Player" as Player {
+    + id : uuid
+    + name : string
+}
+
+entity "Match" as Match {
+    + id : uuid
+    + player_a_set_one : int
+    + player_a_set_two : int
+    + player_a_set_three : int
+    + player_b_set_one : int
+    + player_b_set_two : int
+    + player_b_set_three : int
+}
+
+Organizer ||--o{ Tournament : "has many"
+Tournament ||--o{ Group : "has many"
+Tournament ||--o{ Bracket : "has many"
+Tournament ||--o{ Player : "has many"
+Player }o--o{ Tournament : "participates in"
+Player ||--o{ Match : "plays"
+Match ||--|| Player : "is played by"
+
+@enduml
+
+```
 
 **Prompt 3:**
 

@@ -41,7 +41,7 @@ entity "Match" as Match {
 Organizer ||--o{ Tournament : "has many"
 Tournament ||--o{ Group : "has many"
 Tournament ||--o{ Bracket : "has many"
-Tournament ||--o{ Player : "has many"
+Tournament }o--o{ Player : "has many"
 Player }o--o{ Tournament : "participates in"
 Player ||--o{ Match : "plays"
 Match ||--|| Player : "is played by"
