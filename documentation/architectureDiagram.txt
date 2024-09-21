@@ -8,27 +8,21 @@ RECTANGLE "Frontend: React Application" as Frontend {
     + Group Standings
 }
 
-RECTANGLE "API Layer: Node.js / Express Server" as APILayer {
+RECTANGLE "API Layer: Node.js / Express Server" as API {
     + Player Routes
     + Tournament Routes
     + Match Routes
     + Group Routes
 }
 
-RECTANGLE "Database: MongoDB/PostgreSQL" as Database {
+RECTANGLE "Database: PostgreSQL" as Database {
     + Players
     + Tournaments
     + Matches
     + Groups
 }
 
-RECTANGLE "External Services" as ExternalServices {
-    + Authentication Service
-    + Hosting Services
-}
-
 Frontend -down-> APILayer : RESTful API calls
-APILayer -down-> Database : CRUD operations
-ExternalServices -down-> APILayer : Optional Integration
+API -down-> Database : CRUD operations
 
 @enduml
