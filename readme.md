@@ -57,7 +57,7 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 ## 2. Arquitectura del Sistema
 
 ### **2.1. Diagrama de arquitectura:**
-
+![alternative text](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jpsalamanca99/AI4Devs-finalproject/refs/heads/main/documentation/architectureDiagram.txt)
 
 ### **2.2. Descripción de componentes principales:**
 
