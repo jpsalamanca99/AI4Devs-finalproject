@@ -95,7 +95,7 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 
 ## 4. Especificación de la API
 
-[a relative link](documentation/other_file.md)
+[Especificación en openAPI](documentation/apiSpecification.yml)
 
 ---
 
