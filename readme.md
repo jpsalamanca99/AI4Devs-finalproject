@@ -101,7 +101,6 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 
 ## 5. Historias de Usuario
 La lista completa de historias de usuario esta detallada en el archivo prompts, aca se resumen en 3 historias de usuario principales 
-> Documenta 3 de las historias de usuario principales utilizadas durante el desarrollo, teniendo en cuenta las buenas prácticas de producto al respecto.
 
 **Historia de Usuario 1: Selección de jugadores**
 Como organizador quiero selccionar una lista de 64 jugadores para registrarlos en el torneo, en caso de que el jugador aun no este registrado en el sistema quiero poder registrarlo, en caso de no tener 64 jugadores seleccionados los campos restantes deben llenarse con "jugadores bye".
@@ -116,13 +115,183 @@ Como organizador quiero recolectar los resultados de los partidos de la fase de 
 
 ## 6. Tickets de Trabajo
 
-> Documenta 3 de los tickets de trabajo principales del desarrollo, uno de backend, uno de frontend, y uno de bases de datos. Da todo el detalle requerido para desarrollar la tarea de inicio a fin teniendo en cuenta las buenas prácticas al respecto. 
-
 **Ticket 1**
+# Work Ticket: Create Entity-Relationship Model in PostgreSQL Database
+
+**Ticket ID:** DB-001  
+**Assigned to:** [Developer Name]  
+**Due Date:** [Specify Date]  
+**Priority:** High
+
+## Summary
+Implement the entity-relationship model for the tournament assistant in a PostgreSQL database, including tables for Organizer, Tournament, Player, Match, Group, and Bracket.
+
+## Description
+The following entities and their relationships need to be created in the PostgreSQL database:
+
+1. **Organizer**
+   - **Fields:**
+     - `id` (UUID, Primary Key)
+     - `name` (String, Not Null)
+     - `nid` (String, Not Null)
+
+2. **Tournament**
+   - **Fields:**
+     - `id` (UUID, Primary Key)
+     - `name` (String, Not Null)
+     - `date` (Timestamp, Not Null)
+     - `organizer_id` (UUID, Foreign Key referencing Organizer)
+
+3. **Player**
+   - **Fields:**
+     - `id` (UUID, Primary Key)
+     - `name` (String, Not Null)
+
+4. **Group**
+   - **Fields:**
+     - `id` (UUID, Primary Key)
+     - `group_number` (Integer, Not Null)
+     - `table` (String, Not Null)
+     - `tournament_id` (UUID, Foreign Key referencing Tournament)
+
+5. **Match**
+   - **Fields:**
+     - `id` (UUID, Primary Key)
+     - `player_a_set_one` (Integer)
+     - `player_a_set_two` (Integer)
+     - `player_a_set_three` (Integer)
+     - `player_b_set_one` (Integer)
+     - `player_b_set_two` (Integer)
+     - `player_b_set_three` (Integer)
+     - `group_id` (UUID, Foreign Key referencing Group)
+
+6. **Bracket**
+   - **Fields:**
+     - `id` (UUID, Primary Key)
+     - `stage` (String, Not Null)
+     - `order` (Integer, Not Null)
+     - `tournament_id` (UUID, Foreign Key referencing Tournament)
+
+## Acceptance Criteria
+- All tables must be created with the specified fields and data types.
+- Foreign key constraints must be properly set up to enforce relationships.
+- Appropriate indexing must be applied to enhance query performance.
+- Migrations must be documented for deployment.
+- Test cases should be created to verify the structure of the tables.
+
+## Additional Notes
+- Use [pgAdmin](https://www.pgadmin.org/) or a similar tool for database management.
+- Ensure that the database schema follows best practices for naming conventions and normalization.
+- Document any changes or decisions made during implementation in the project's repository.
 
 **Ticket 2**
+# Work Ticket: Develop Create Action for Player Entity
+
+**Ticket ID:** API-002  
+**Assigned to:** [Developer Name]  
+**Due Date:** [Specify Date]  
+**Priority:** High
+
+## Summary
+Implement the "create" action for the Player entity in the tournament organizer API using Node.js, Express, and Sequelize.
+
+## Description
+Develop an API endpoint to allow the creation of a new player in the database. The endpoint should validate the input and interact with the PostgreSQL database through Sequelize.
+
+### Endpoint
+- **POST** `/api/players`
+
+### Request Body
+The request must include a JSON object with the following structure:
+```json
+{
+  "id": "string (UUID)",
+  "name": "string (Not Null)"
+}
+```
+### Validation
+Ensure that:
+- The name field is a non-empty string.
+
+### Responses
+201 Created
+
+On successful creation, respond with the created player object:
+```json
+{
+  "id": "string (UUID)",
+  "name": "string"
+}
+```
+
+400 Bad Request
+
+If validation fails, respond with an error message:
+```json
+{
+  "error": "Validation error message"
+}
+```
+## Acceptance Criteria
+- The endpoint must be implemented and tested.
+- Input validation should handle all specified cases.
+- Proper error handling should be in place for unexpected issues.
+- Ensure that unit tests cover the create functionality.
+## Additional Notes
+- Use Sequelize for ORM to interact with the PostgreSQL database.
+- Follow existing code style and structure of the project.
+- Document any changes made to the API or database schema.
+- Update Postman or API documentation to include the new endpoint.
 
 **Ticket 3**
+# Work Ticket: Create Player List View in React
+
+**Ticket ID:** UI-003  
+**Assigned to:** [Developer Name]  
+**Due Date:** [Specify Date]  
+**Priority:** Medium
+
+## Summary
+Develop a React component to display a list of registered players fetched from the API. This view should be user-friendly and allow the organizer to easily select players for the tournament.
+
+## Description
+Create a React component that fetches and displays the list of registered players from the API. The component should allow the organizer to view, search, and select players.
+
+### Requirements
+- Fetch the list of players from the API endpoint: `GET /api/players`
+- Display the list in a table format with the following columns:
+  - **ID**
+  - **Name**
+- Implement search functionality to filter players by name.
+- Provide a checkbox next to each player for selection.
+- Include a button to confirm selection of players for the tournament.
+
+### Component Structure
+- **PlayerList** (Main component)
+  - Fetches player data
+  - Displays players in a table
+  - Implements search and selection functionality
+
+### User Interaction
+- On load, the component should display all registered players.
+- The search input should filter the displayed list in real-time.
+- The selected players should be stored in the component state for further processing.
+
+## Acceptance Criteria
+- The component should successfully fetch and display the player data from the API.
+- The search functionality must work correctly and update the displayed list.
+- The selection of players must be reflected in the component state.
+- The code must adhere to the existing project structure and style guidelines.
+
+## Additional Notes
+- Use functional components and React hooks (e.g., `useEffect`, `useState`).
+- Ensure proper error handling for the API call.
+- Test the component for responsiveness and usability.
+- Document any state management and props being passed down to child components.
+
+## References
+- React Documentation: [React](https://reactjs.org/)
+- Axios for API requests: [Axios](https://axios-http.com/)
 
 ---
 

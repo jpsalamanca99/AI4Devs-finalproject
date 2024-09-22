@@ -44,6 +44,6 @@ Tournament ||--o{ Bracket : "has many"
 Tournament }o--o{ Player : "has many"
 Player }o--o{ Tournament : "participates in"
 Player ||--o{ Match : "plays"
-Match ||--|| Player : "is played by"
+Match }o--|| Player : "is played by"
 
 @enduml
