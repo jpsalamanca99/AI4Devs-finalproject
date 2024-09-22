@@ -22,7 +22,7 @@ RECTANGLE "Database: PostgreSQL" as Database {
     + Groups
 }
 
-Frontend -down-> APILayer : RESTful API calls
+Frontend -down-> API : RESTful API calls
 API -down-> Database : CRUD operations
 
 @enduml

@@ -100,14 +100,17 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 ---
 
 ## 5. Historias de Usuario
-
+La lista completa de historias de usuario esta detallada en el archivo prompts, aca se resumen en 3 historias de usuario principales 
 > Documenta 3 de las historias de usuario principales utilizadas durante el desarrollo, teniendo en cuenta las buenas prácticas de producto al respecto.
 
-**Historia de Usuario 1**
+**Historia de Usuario 1: Selección de jugadores**
+Como organizador quiero selccionar una lista de 64 jugadores para registrarlos en el torneo, en caso de que el jugador aun no este registrado en el sistema quiero poder registrarlo, en caso de no tener 64 jugadores seleccionados los campos restantes deben llenarse con "jugadores bye".
 
-**Historia de Usuario 2**
+**Historia de Usuario 2: Generación de grupos**
+Como organizador quiero generar a partir deu una lista de 64 jugadores, 16 grupos de 4 jugadores cada uno y se les asignara una numero de mesa donde jugaran las partidos de la fase de cuadros.
 
-**Historia de Usuario 3**
+**Historia de Usuario 3: Recolección de resultados y fase de llaves**
+Como organizador quiero recolectar los resultados de los partidos de la fase de cuadros para determinar los resultados y decidir que jugadores avanzaran a la fase de llaves.
 
 ---
 

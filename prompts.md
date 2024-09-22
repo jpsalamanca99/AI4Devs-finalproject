@@ -704,12 +704,53 @@ components:
 ---
 
 ### 5. Historias de Usuario
+Estos prompts siguen la conversación del apartado 4
 
 **Prompt 1:**
+Using as a base the road map and the next description of the functionality of the assistant, create user stories
 
-**Prompt 2:**
 
-**Prompt 3:**
+
+The assistant must allow a person log in as an organizer of a tournament using the nid, then the organizer must select the list of players who will play the tournament, the total of players must be less or equal to 64 players, the existing players in the database will apear in a list to pick them and there will bin an option to create a new player. If there are less than 64 players in the list the remaining places will be filled by a "bye player". After the list of players is ready the assistant will generate 16 diferent groups of 4 players, without repiting players among the goups; to each group a number between 1 and 8 will be assigned representing the table in wich the matches will be played. For each group the assistant will create 6 matches, one for each different pair of players in the group. For each match the assistant will be able to collect the results of the three sets that will be played and will set the winer of the match. After every match in every group is played the assistant will pick the two best players in every group and generate the direct elimination brackets. The result of each bracket match will determine the player who advances to the next stage until the final match is played and the champion is decided.
+
+**Respuesta:**
+
+Here are user stories based on your roadmap and the functionality description of the tournament assistant:
+
+User Stories
+1. User Authentication
+    * As an organizer, I want to log in using my NID, so that I can access the tournament management features.
+2. Player Selection
+    *  As an organizer, I want to view a list of existing players, so that I can select players for the tournament.
+
+    *  As an organizer, I want to create a new player if they are not in the existing list, so that I can ensure all participants are registered.
+
+    *  As an organizer, I want to select up to 64 players for the tournament, so that I can ensure that the tournament has enough participants.
+
+    *  As an organizer, I want to automatically fill any remaining spots with "bye players", so that I can complete the player list even if fewer than 64 players are selected.
+
+3. Group Generation
+    * As an organizer, I want to have 16 groups of 4 players generated from the selected players, so that each group is balanced and competitive.
+
+    * As an organizer, I want to assign a table number (1-8) to each group, so that I can manage the matches more easily.
+
+4. Match Creation
+    * As an organizer, I want to create 6 matches for each group based on all unique player pairings, so that every player has the opportunity to compete against each other.
+
+5. Result Collection
+    * As an organizer, I want to collect results for the three sets played in each match, so that I can determine the winner of the match.
+
+    * As an organizer, I want to set the winner of each match, so that the tournament can proceed to the next phase.
+
+6. Advancement and Bracket Generation
+    * As an organizer, I want to identify the top two players from each group after all matches are played, so that they can advance to the elimination phase.
+
+    * As an organizer, I want to generate direct elimination brackets based on the top players, so that I can organize the final matches efficiently.
+
+7. Final Matches and Champion Declaration
+    * As an organizer, I want to collect results from each match in the elimination brackets, so that I can track who advances to the next round.
+
+    * As an organizer, I want to determine the champion after the final match is played, so that I can officially conclude the tournament.
 
 ---
 
