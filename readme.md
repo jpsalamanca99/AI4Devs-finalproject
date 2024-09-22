@@ -115,108 +115,106 @@ Como organizador quiero recolectar los resultados de los partidos de la fase de 
 
 ## 6. Tickets de Trabajo
 
-**Ticket 1**
-# Work Ticket: Create Entity-Relationship Model in PostgreSQL Database
+# Ticket 1
+## Replicar el modelo entidad-relación en una base de datos PostgreSQL
 
-**Ticket ID:** DB-001  
-**Assigned to:** [Developer Name]  
-**Due Date:** [Specify Date]  
-**Priority:** High
+**ID del Ticket:** DB-001  
+**Prioridad:** Alta
 
-## Summary
-Implement the entity-relationship model for the tournament assistant in a PostgreSQL database, including tables for Organizer, Tournament, Player, Match, Group, and Bracket.
+## Resumen
+Implementar el modelo entidad-relación para el asistente de torneos en una base de datos PostgreSQL, incluyendo las tablas y sus relaciones.
 
-## Description
-The following entities and their relationships need to be created in the PostgreSQL database:
+## Descripción
+Las siguientes entidades y sus relaciones deben ser creadas en la base de datos PostgreSQL:
 
-1. **Organizer**
-   - **Fields:**
-     - `id` (UUID, Primary Key)
-     - `name` (String, Not Null)
-     - `nid` (String, Not Null)
+1. **Organizador**
+   - **Campos:**
+     - `id` (UUID, Clave Primaria)
+     - `name` (String, No Nulo)
+     - `nid` (String, No Nulo)
 
-2. **Tournament**
-   - **Fields:**
-     - `id` (UUID, Primary Key)
-     - `name` (String, Not Null)
-     - `date` (Timestamp, Not Null)
-     - `organizer_id` (UUID, Foreign Key referencing Organizer)
+2. **Torneo**
+   - **Campos:**
+     - `id` (UUID, Clave Primaria)
+     - `name` (String, No Nulo)
+     - `date` (Timestamp, No Nulo)
+     - `organizer_id` (UUID, Clave Foránea que referencia a Organizador)
 
-3. **Player**
-   - **Fields:**
-     - `id` (UUID, Primary Key)
-     - `name` (String, Not Null)
+3. **Jugador**
+   - **Campos:**
+     - `id` (UUID, Clave Primaria)
+     - `name` (String, No Nulo)
 
-4. **Group**
-   - **Fields:**
-     - `id` (UUID, Primary Key)
-     - `group_number` (Integer, Not Null)
-     - `table` (String, Not Null)
-     - `tournament_id` (UUID, Foreign Key referencing Tournament)
+4. **Grupo**
+   - **Campos:**
+     - `id` (UUID, Clave Primaria)
+     - `group_number` (Integer, No Nulo)
+     - `table` (String, No Nulo)
+     - `tournament_id` (UUID, Clave Foránea que referencia a Torneo)
 
-5. **Match**
-   - **Fields:**
-     - `id` (UUID, Primary Key)
+5. **Partido**
+   - **Campos:**
+     - `id` (UUID, Clave Primaria)
      - `player_a_set_one` (Integer)
      - `player_a_set_two` (Integer)
      - `player_a_set_three` (Integer)
      - `player_b_set_one` (Integer)
      - `player_b_set_two` (Integer)
      - `player_b_set_three` (Integer)
-     - `group_id` (UUID, Foreign Key referencing Group)
+     - `group_id` (UUID, Clave Foránea que referencia a Grupo)
 
-6. **Bracket**
-   - **Fields:**
-     - `id` (UUID, Primary Key)
-     - `stage` (String, Not Null)
-     - `order` (Integer, Not Null)
-     - `tournament_id` (UUID, Foreign Key referencing Tournament)
+6. **Cuadro**
+   - **Campos:**
+     - `id` (UUID, Clave Primaria)
+     - `stage` (String, No Nulo)
+     - `order` (Integer, No Nulo)
+     - `tournament_id` (UUID, Clave Foránea que referencia a Torneo)
 
-## Acceptance Criteria
-- All tables must be created with the specified fields and data types.
-- Foreign key constraints must be properly set up to enforce relationships.
-- Appropriate indexing must be applied to enhance query performance.
-- Migrations must be documented for deployment.
-- Test cases should be created to verify the structure of the tables.
+## Criterios de Aceptación
+- Todas las tablas deben ser creadas con los campos y tipos de datos especificados.
+- Las restricciones de clave foránea deben ser configuradas adecuadamente para hacer cumplir las relaciones.
+- Se debe aplicar un indexado apropiado para mejorar el rendimiento de las consultas.
+- Las migraciones deben ser documentadas para el despliegue.
+- Se deben crear casos de prueba para verificar la estructura de las tablas.
 
-## Additional Notes
-- Use [pgAdmin](https://www.pgadmin.org/) or a similar tool for database management.
-- Ensure that the database schema follows best practices for naming conventions and normalization.
-- Document any changes or decisions made during implementation in the project's repository.
+## Notas Adicionales
+- Utilizar [pgAdmin](https://www.pgadmin.org/) o una herramienta similar para la gestión de la base de datos.
+- Asegurarse de que el esquema de la base de datos siga las mejores prácticas en convenciones de nombres y normalización.
+- Documentar cualquier cambio o decisión tomada durante la implementación en el repositorio del proyecto.
 
-**Ticket 2**
-# Work Ticket: Develop Create Action for Player Entity
 
-**Ticket ID:** API-002  
-**Assigned to:** [Developer Name]  
-**Due Date:** [Specify Date]  
-**Priority:** High
+# Ticket 2
+# Desarrollar la Acción de Crear para la Entidad Jugador
 
-## Summary
-Implement the "create" action for the Player entity in the tournament organizer API using Node.js, Express, and Sequelize.
+**ID del Ticket:** API-002  
+**Prioridad:** Alta
 
-## Description
-Develop an API endpoint to allow the creation of a new player in the database. The endpoint should validate the input and interact with the PostgreSQL database through Sequelize.
+## Resumen
+Implementar la acción "crear" para la entidad Jugador en la API del organizador de torneos utilizando Node.js, Express y Sequelize.
+
+## Descripción
+Desarrollar un endpoint de API para permitir la creación de un nuevo jugador en la base de datos. El endpoint debe validar la entrada e interactuar con la base de datos PostgreSQL a través de Sequelize.
 
 ### Endpoint
 - **POST** `/api/players`
 
-### Request Body
-The request must include a JSON object with the following structure:
+### Cuerpo de la Solicitud
+La solicitud debe incluir un objeto JSON con la siguiente estructura:
 ```json
 {
   "id": "string (UUID)",
-  "name": "string (Not Null)"
+  "name": "string (No Nulo)"
 }
+
 ```
-### Validation
-Ensure that:
-- The name field is a non-empty string.
+### Validación
+Asegurarse de que:
+- El campo nombre sea una cadena no vacía.
 
-### Responses
-201 Created
+### Respuestas
+201 Creado
 
-On successful creation, respond with the created player object:
+En caso de creación exitosa, responder con el objeto del jugador creado:
 ```json
 {
   "id": "string (UUID)",
@@ -224,74 +222,72 @@ On successful creation, respond with the created player object:
 }
 ```
 
-400 Bad Request
+400 Solicitud Incorrecta
 
-If validation fails, respond with an error message:
+Si la validación falla, responder con un mensaje de error:
 ```json
 {
   "error": "Validation error message"
 }
 ```
-## Acceptance Criteria
-- The endpoint must be implemented and tested.
-- Input validation should handle all specified cases.
-- Proper error handling should be in place for unexpected issues.
-- Ensure that unit tests cover the create functionality.
-## Additional Notes
-- Use Sequelize for ORM to interact with the PostgreSQL database.
-- Follow existing code style and structure of the project.
-- Document any changes made to the API or database schema.
-- Update Postman or API documentation to include the new endpoint.
+## Criterios de Aceptación
+- El endpoint debe ser implementado y probado.
+- La validación de entrada debe manejar todos los casos especificados.
+- Debe haber un manejo adecuado de errores para problemas inesperados.
+- Asegurarse de que las pruebas unitarias cubran la funcionalidad de creación.
+## Notas Adicionales
+- Utilizar Sequelize como ORM para interactuar con la base de datos PostgreSQL.
+- Seguir el estilo y la estructura de código existente del proyecto.
+- Documentar cualquier cambio realizado en la API o en el esquema de la base de datos.
+- Actualizar Postman o la documentación de la API para incluir el nuevo endpoint.
 
 **Ticket 3**
-# Work Ticket: Create Player List View in React
+# Crear Vista de Lista de Jugadores en React
 
-**Ticket ID:** UI-003  
-**Assigned to:** [Developer Name]  
-**Due Date:** [Specify Date]  
-**Priority:** Medium
+**ID del Ticket:** UI-003  
+**Prioridad:** Media
 
-## Summary
-Develop a React component to display a list of registered players fetched from the API. This view should be user-friendly and allow the organizer to easily select players for the tournament.
+## Resumen
+Desarrollar un componente de React para mostrar una lista de jugadores registrados obtenidos de la API. Esta vista debe ser fácil de usar y permitir al organizador seleccionar jugadores para el torneo de manera sencilla.
 
-## Description
-Create a React component that fetches and displays the list of registered players from the API. The component should allow the organizer to view, search, and select players.
+## Descripción
+Crear un componente de React que obtenga y muestre la lista de jugadores registrados desde la API. El componente debe permitir al organizador ver, buscar y seleccionar jugadores.
 
-### Requirements
-- Fetch the list of players from the API endpoint: `GET /api/players`
-- Display the list in a table format with the following columns:
+### Requisitos
+- Obtener la lista de jugadores desde el endpoint de la API: `GET /api/players`
+- Mostrar la lista en un formato de tabla con las siguientes columnas:
   - **ID**
-  - **Name**
-- Implement search functionality to filter players by name.
-- Provide a checkbox next to each player for selection.
-- Include a button to confirm selection of players for the tournament.
+  - **Nombre**
+- Implementar una funcionalidad de búsqueda para filtrar jugadores por nombre.
+- Proporcionar una casilla de verificación junto a cada jugador para su selección.
+- Incluir un botón para confirmar la selección de jugadores para el torneo.
 
-### Component Structure
-- **PlayerList** (Main component)
-  - Fetches player data
-  - Displays players in a table
-  - Implements search and selection functionality
+### Estructura del Componente
+- **PlayerList** (Componente principal)
+  - Obtiene los datos de los jugadores
+  - Muestra los jugadores en una tabla
+  - Implementa la funcionalidad de búsqueda y selección
 
-### User Interaction
-- On load, the component should display all registered players.
-- The search input should filter the displayed list in real-time.
-- The selected players should be stored in the component state for further processing.
+### Interacción del Usuario
+- Al cargar, el componente debe mostrar todos los jugadores registrados.
+- La entrada de búsqueda debe filtrar la lista mostrada en tiempo real.
+- Los jugadores seleccionados deben ser almacenados en el estado del componente para su posterior procesamiento.
 
-## Acceptance Criteria
-- The component should successfully fetch and display the player data from the API.
-- The search functionality must work correctly and update the displayed list.
-- The selection of players must be reflected in the component state.
-- The code must adhere to the existing project structure and style guidelines.
+## Criterios de Aceptación
+- El componente debe obtener y mostrar correctamente los datos de los jugadores desde la API.
+- La funcionalidad de búsqueda debe funcionar correctamente y actualizar la lista mostrada.
+- La selección de jugadores debe reflejarse en el estado del componente.
+- El código debe adherirse a la estructura y las pautas de estilo del proyecto existente.
 
-## Additional Notes
-- Use functional components and React hooks (e.g., `useEffect`, `useState`).
-- Ensure proper error handling for the API call.
-- Test the component for responsiveness and usability.
-- Document any state management and props being passed down to child components.
+## Notas Adicionales
+- Utilizar componentes funcionales y hooks de React (por ejemplo, `useEffect`, `useState`).
+- Asegurarse de manejar errores adecuadamente para la llamada a la API.
+- Probar el componente por su capacidad de respuesta y usabilidad.
+- Documentar cualquier gestión del estado y propiedades que se pasen a los componentes hijos.
 
-## References
-- React Documentation: [React](https://reactjs.org/)
-- Axios for API requests: [Axios](https://axios-http.com/)
+## Referencias
+- Documentación de React: [React](https://reactjs.org/)
+- Axios para solicitudes a la API: [Axios](https://axios-http.com/)
 
 ---
 
