@@ -1,16 +1,14 @@
 import express from 'express';
+import { PlayerCreator } from './handlers/PlayerCreator.js';
+import { PlayerFinder } from './handlers/PlayerFinder.js';
 
 const router = express.Router();
 
 // GET all players
-router.get('/', (req, res) => {
-  res.status(200).json({ message: 'GET all players' });
-});
+router.get('/', PlayerFinder.validations, PlayerFinder.run);
 
 // POST a new player
-router.post('/', (req, res) => {
-  res.status(201).json({ message: 'POST a new player', data: req.body });
-});
+router.post('/', PlayerCreator.validations, PlayerCreator.run);
 
 // GET a specific player
 router.get('/:id', (req, res) => {

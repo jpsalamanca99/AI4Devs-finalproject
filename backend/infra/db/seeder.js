@@ -17,9 +17,10 @@ const sequelize = new Sequelize(database, user, password, {
   dialect: 'postgres',
   migrationStoragePath: './migrations'
 });
-const umzug = new Umzug({
+
+const seedUmzug = new Umzug({
   migrations: {
-    glob: ['./migrations/*.js', { cwd: __dirname }],
+    glob: ['./seeds/*.js', { cwd: __dirname }],
     resolve: ({ name, path, context }) => {
       const getModule = () => import(`file:///${path.replace(/\\/g, '/')}`);
       return {
@@ -32,8 +33,9 @@ const umzug = new Umzug({
   context: { sequelize },
   storage: new SequelizeStorage({
     sequelize: sequelize,
+    modelName: 'SequelizeMetaSeeds',
   }),
   logger: console,
 });
 
-umzug.runAsCLI();
+seedUmzug.runAsCLI();
