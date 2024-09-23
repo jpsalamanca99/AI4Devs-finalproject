@@ -1,0 +1,30 @@
+{
+  "type": "module",
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-specifier-resolution=node app.js",
+    "local": "nodemon -r dotenv/config --experimental-specifier-resolution=node app.js",
+    "migrator": "node -r dotenv/config --experimental-specifier-resolution=node infra/db/migrator.js",
+    "deploy-migrator": "node --experimental-specifier-resolution=node infra/db/migrator.js up",
+    "seeder": "node -r dotenv/config --experimental-specifier-resolution=node infra/db/seeder.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "pg": "^8.13.0",
+    "sequelize": "^6.37.3",
+    "umzug": "^3.8.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.7"
+  }
+}

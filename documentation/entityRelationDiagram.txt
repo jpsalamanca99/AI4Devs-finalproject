@@ -45,5 +45,7 @@ Tournament }o--o{ Player : "has many"
 Player }o--o{ Tournament : "participates in"
 Player ||--o{ Match : "plays"
 Match }o--|| Player : "is played by"
+Group }o--o{ Player : "has many"
+Player }o--o{ Group : "belongs to many"
 
 @enduml
