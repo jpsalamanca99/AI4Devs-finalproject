@@ -287,15 +287,20 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
         date:
           type: string
           format: date-time
+        organizerId:
+          type: string
+          format: uuid
       required:
         - id
         - name
         - date
+        - organizerId
 
     Player:
       type: object
@@ -327,9 +332,18 @@ components:
         date:
           type: string
           format: date-time
+        playerIds:
+          type: array
+          items:
+            type: string
+        organizerId:
+          type: string
+          format: uuid
       required:
         - name
         - date
+        - playerIds
+        - organizerId
 
     NewPlayer:
       type: object
