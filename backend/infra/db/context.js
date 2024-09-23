@@ -1,13 +1,16 @@
-import { Sequelize } from 'sequelize';
-import Organizer from './organizer.js';
-import Tournament from './tournament.js';
-import Group from './group.js';
-import Bracket from './bracket.js';
-import Player from './player.js';
-import Match from './match.js';
-import { getConnectionString } from './config.js';
+import { Sequelize } from "sequelize";
+import Organizer from "./models/organizer.js";
+import Tournament from "./models/tournament.js";
+import Group from "./models/group.js";
+import Bracket from "./models/bracket.js";
+import Player from "./models/player.js";
+import Match from "./models/match.js";
+import { getConnectionString } from "./config.js";
+
+import pkg from "pg-connection-string";
 
 let context;
+const { parse } = pkg;
 
 const build = (sequelize) => {
   const models = {
@@ -18,13 +21,15 @@ const build = (sequelize) => {
     Player: Player(sequelize),
     Match: Match(sequelize),
   };
-  
-  Object.values(models).forEach(model => {
+
+  Object.values(models).forEach((model) => {
     if (model.associate) {
       model.associate(models);
     }
   });
-}
+
+  return models;
+};
 
 const getContext = async () => {
   if (!context) {
@@ -33,8 +38,8 @@ const getContext = async () => {
     const sequelize = new Sequelize(database, user, password, {
       host,
       port,
-      dialect: 'postgres',
-      logging: detail => logger.debug({ message: 'Sequelize', detail }),
+      dialect: "postgres",
+      logging: (detail) => console.log({ message: "Sequelize", detail }),
     });
     const models = build(sequelize);
     context = {
