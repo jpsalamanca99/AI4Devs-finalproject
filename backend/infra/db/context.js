@@ -6,6 +6,7 @@ import Bracket from "./models/bracket.js";
 import Player from "./models/player.js";
 import Match from "./models/match.js";
 import TournamentPlayer from "./models/tournamentPlayers.js";
+import GroupPlayer from "./models/groupPlayers.js";
 import { getConnectionString } from "./config.js";
 
 import pkg from "pg-connection-string";
@@ -21,7 +22,8 @@ const build = (sequelize) => {
     Bracket: Bracket(sequelize),
     Player: Player(sequelize),
     Match: Match(sequelize),
-    TournamentPlayer: TournamentPlayer(sequelize)
+    TournamentPlayer: TournamentPlayer(sequelize),
+    GroupPlayer: GroupPlayer(sequelize)
   };
 
   Object.values(models).forEach((model) => {

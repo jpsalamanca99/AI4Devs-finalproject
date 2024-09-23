@@ -266,6 +266,25 @@ paths:
         '404':
           description: Player not found
 
+  /groups:
+    post:
+      summary: Create groups for a tournament
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroups'
+      responses:
+        '201':
+          description: Groups created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+
 components:
   schemas:
     Organizer:
@@ -352,3 +371,31 @@ components:
           type: string
       required:
         - name
+
+    NewGroups:
+      type: object
+      properties:
+        tournamentId:
+          type: string
+          format: uuid
+      required:
+        - tournamentId
+
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        groupNumber:
+          type: integer
+        table:
+          type: string
+        tournamentId:
+          type: string
+          format: uuid
+      required:
+        - id
+        - groupNumber
+        - table
+        - tournamentId

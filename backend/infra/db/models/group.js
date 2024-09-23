@@ -4,6 +4,7 @@ export default (sequelize) => {
   class Group extends Model {
     static associate(models) {
       Group.belongsTo(models.Tournament, { foreignKey: 'tournamentId' });
+      Group.belongsToMany(models.Player, { through: 'GroupPlayers' });
     }
   }
 
