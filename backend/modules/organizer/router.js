@@ -1,5 +1,4 @@
-import { CreateOrganizer } from "./commands/CreateOrganizer.js";
-import { OrganizerCreator } from "./useCases/OrganizerCreator.js";
+import { OrganizerCreator } from "./handlers/OrganaizerCreator.js";
 
 import express from "express";
 
@@ -11,11 +10,7 @@ router.get("/", (req, res) => {
 });
 
 // POST a new organizer
-router.post("/", (req, res) => {
-  const cmd = new CreateOrganizer(req);
-  const handler = new OrganizerCreator();
-  return handler.run(cmd);
-});
+router.post("/", OrganizerCreator.validations, OrganizerCreator.run);
 
 // GET a specific organizer
 router.get("/:id", (req, res) => {
@@ -24,12 +19,10 @@ router.get("/:id", (req, res) => {
 
 // PUT (update) a specific organizer
 router.put("/:id", (req, res) => {
-  res
-    .status(200)
-    .json({
-      message: `UPDATE organizer with id ${req.params.id}`,
-      data: req.body,
-    });
+  res.status(200).json({
+    message: `UPDATE organizer with id ${req.params.id}`,
+    data: req.body,
+  });
 });
 
 // DELETE a specific organizer
