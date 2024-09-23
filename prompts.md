@@ -181,18 +181,78 @@ ExternalServices -down-> APILayer : Optional Integration
 ### **2.2. Descripción de componentes principales:**
 
 **Prompt 1:**
+El siguiente prompt se ejecuto en Cursor usando como contexto el proyecto entero
 
-**Prompt 2:**
+Given the component diagram @architectureDiagram.txt describe the 3 main components, output the description in a markdown file
 
-**Prompt 3:**
+**respuesta.**
+#### Architecture Diagram Components Description
+
+The architecture diagram outlines the structure of a system composed of three main components: the Frontend, the API Layer, and the Database. Below is a description of each component:
+
+##### 1. Frontend: React Application
+The frontend component is a React application that serves as the user interface for the system. It includes several key features:
+
+- **Registration Form**: Allows users to register for the application, providing necessary information to create an account.
+- **Tournament Dashboard**: Displays an overview of ongoing and upcoming tournaments, including relevant statistics and information.
+- **Match Scheduler**: Facilitates the scheduling of matches within tournaments, allowing users to set dates and times for games.
+- **Group Standings**: Shows the standings of different groups within tournaments, providing users with insights into team performance.
+
+##### 2. API Layer: Node.js / Express Server
+The API layer acts as an intermediary between the frontend and the database. It is built using Node.js and Express, providing a set of RESTful API endpoints for various operations:
+
+- **Player Routes**: Handles requests related to player management, such as creating, updating, and retrieving player information.
+- **Tournament Routes**: Manages tournament-related operations, including creating new tournaments, retrieving tournament details, and updating tournament information.
+- **Match Routes**: Facilitates operations related to matches, such as scheduling matches, updating match results, and retrieving match details.
+- **Group Routes**: Manages group-related functionalities, including creating groups, retrieving group standings, and updating group information.
+
+##### 3. Database: PostgreSQL
+The database component is a PostgreSQL database that stores all the persistent data for the application. It includes several key entities:
+
+- **Players**: Contains information about the players participating in tournaments, including their profiles and statistics.
+- **Tournaments**: Stores details about the tournaments, such as names, dates, and associated organizers.
+- **Matches**: Keeps track of match details, including participants, scores, and scheduling information.
+- **Groups**: Manages group information within tournaments, including group compositions and standings.
+
+##### Interaction Flow
+The architecture diagram illustrates the interaction flow between these components:
+- The **Frontend** communicates with the **API Layer** through RESTful API calls to perform various operations.
+- The **API Layer** interacts with the **Database** to execute CRUD (Create, Read, Update, Delete) operations, ensuring that data is stored and retrieved as needed.
 
 ### **2.3. Descripción de alto nivel del proyecto y estructura de ficheros**
 
 **Prompt 1:**
+El siguiente prompt se ejecuto en Cursor usando como contexto la carpeta backend
 
-**Prompt 2:**
+Analize and describe the file structure of the @backend folder, output the description in a markdown file
 
-**Prompt 3:**
+**Respuesta:**
+
+#### Description of Key Components
+
+1. **Root Files:**
+   - **`.example.env`**: A template for environment variables that the application may require.
+   - **`package.json`**: Contains metadata about the project, including dependencies, scripts, and project information.
+   - **`app.js`**: The main entry point of the application where the Express server is set up and routes are defined.
+
+2. **`infra/` Directory:**
+   - **`db/`**: Contains all database-related files.
+     - **`context.js`**: Manages the Sequelize context and model associations.
+     - **`config.js`**: Provides a function to construct the database connection string using environment variables.
+     - **`migrations/`**: Contains migration files that define changes to the database schema.
+     - **`models/`**: Contains Sequelize model definitions for various entities (e.g., Organizer, Player, Tournament).
+     - **`seeder.js`**: Handles seeding the database with initial data.
+     - **`migrator.js`**: Manages database migrations using Umzug.
+
+3. **`modules/` Directory:**
+   - Contains subdirectories for different modules of the application, each representing a specific domain (e.g., groups, organizers, players, tournaments).
+   - Each module typically contains:
+     - **`handlers/`**: Contains classes that define the logic for handling requests (e.g., creating, finding entities).
+     - **`router.js`**: Defines the routes for the module and connects them to the appropriate handlers.
+
+#### Summary
+
+The structure of the `@backend` folder is modular and organized, allowing for easy maintenance and scalability. Each module is self-contained, with its own routes and handlers, while the `infra` directory centralizes database management and configuration. This design pattern promotes separation of concerns, making the codebase easier to navigate and understand.
 
 ### **2.4. Infraestructura y despliegue**
 
