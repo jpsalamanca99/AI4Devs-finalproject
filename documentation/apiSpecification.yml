@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Organizer'
+              $ref: '#/components/schemas/NewOrganizer'
       responses:
         '201':
           description: Organizer created successfully
@@ -114,7 +114,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Tournament'
+              $ref: '#/components/schemas/NewTournament'
       responses:
         '201':
           description: Tournament created successfully
@@ -200,7 +200,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Player'
+              $ref: '#/components/schemas/NewPlayer'
       responses:
         '201':
           description: Player created successfully
@@ -306,4 +306,35 @@ components:
           type: string
       required:
         - id
+        - name
+
+    NewOrganizer:
+      type: object
+      properties:
+        name:
+          type: string
+        nid:
+          type: string
+      required:
+        - name
+        - nid
+
+    NewTournament:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+      required:
+        - name
+        - date
+
+    NewPlayer:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
         - name
