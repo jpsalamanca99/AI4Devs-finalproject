@@ -1,0 +1,75 @@
+/* styles/components.css */
+
+/* Variables for color palette */
+:root {
+    --primary-color: #FF3D00; /* Bright Red */
+    --secondary-color: #000000; /* Black */
+    --accent-color: #FFFFFF; /* White */
+    --background-color: #121212; /* Dark Gray */
+    --highlight-color: #FFC107; /* Yellow/Gold */
+}
+
+/* Basic Button Styles */
+.button {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Input Styles */
+.input {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    border: 1px solid var(--secondary-color);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Text Styles */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+/* List Styles */
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-item {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+/* Hover effect for list items */
+.list-item:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Scrollable List Styles */
+.scrollable-list-container {
+    max-height: 300px; /* Set a maximum height for the scrollable area */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border: 1px solid var(--secondary-color); /* Optional: Add a border */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    padding: 10px; /* Optional: Add padding */
+}
