@@ -9,10 +9,25 @@ self.__BUILD_MANIFEST = {
   "lowPriorityFiles": [],
   "rootMainFiles": [],
   "pages": {
+    "/": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
+    ],
     "/CreateTournament": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/CreateTournament.js"
+    ],
+    "/TournamentDetails": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/TournamentDetails.js"
+    ],
+    "/TournamentList": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/TournamentList.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

@@ -1,0 +1,1 @@
+{"c":["pages/index","pages/TournamentList","pages/TournamentDetails","pages/CreateTournament","webpack"],"r":[],"m":["./src/components/SubmitButton.jsx","./src/components/TextInput.jsx","./src/components/PlusButton.jsx","./src/components/List.jsx"]}
