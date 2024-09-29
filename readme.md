@@ -377,3 +377,6 @@ Crear un componente de React que obtenga y muestre la lista de jugadores registr
 
 **Pull Request 1**
 https://github.com/jpsalamanca99/AI4Devs-finalproject/pull/1#issue-2543690248
+
+**Pull Request 2**
+https://github.com/jpsalamanca99/AI4Devs-finalproject/pull/2
