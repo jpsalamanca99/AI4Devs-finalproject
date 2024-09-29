@@ -32,4 +32,4 @@ jobs:
         with:
           firebaseServiceAccount: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
           projectId: ai4devs-b657b
-          workingDirectory: frontend
+          entryPoint: frontend
