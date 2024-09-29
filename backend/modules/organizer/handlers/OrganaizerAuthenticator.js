@@ -40,15 +40,16 @@ export class OrganizerAuthenticator {
       );
 
       if (isPasswordValid) {
-          req.session.user = {
-            id: organizer.id,
-            name: organizer.name,
-            nid: organizer.nid,
-          };
-          return res.status(200).json({ message: "Login successful" });
+        req.session.user = {
+          id: organizer.id,
+          name: organizer.name,
+          nid: organizer.nid,
+        };
+        return res.status(200).json({ message: "Login successful" });
       }
       res.status(401).json({ message: "Invalid credentials" });
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: error.message });
     }
   }

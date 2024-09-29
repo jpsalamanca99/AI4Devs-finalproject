@@ -1,7 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const SubmitButton = ({ label }) => {
-    return <button className="button">{label}</button>;
+const SubmitButton = ({ label, onClick }) => {
+  return (
+    <button className="button" onClick={onClick}>
+      {label}
+    </button>
+  );
 };
 
 export default SubmitButton;

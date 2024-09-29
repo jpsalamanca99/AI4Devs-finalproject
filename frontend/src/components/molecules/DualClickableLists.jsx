@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import ClickableList from "../atoms/ClickableList.jsx";
 
-const DualClickableLists = () => {
-  const [listOneItems, setListOneItems] = useState([
-    "Item 1",
-    "Item 2",
-    "Item 3",
-    "Item 4",
-  ]);
-  const [listTwoItems, setListTwoItems] = useState([]);
+const DualClickableLists = ({
+  labelOne,
+  labelTwo,
+  firstItemsSet = [],
+  secondItemsSet = [],
+  mainProperty
+}) => {
+  const [listOneItems, setListOneItems] = useState(firstItemsSet);
+  const [listTwoItems, setListTwoItems] = useState(secondItemsSet);
 
   const handleItemClick = (item, fromList) => {
     if (fromList === "listOne") {
@@ -21,16 +22,18 @@ const DualClickableLists = () => {
   };
 
   return (
-    <div>
+    <div className="dual-clickable-lists"> {/* Added class for styling */}
       <ClickableList
-        title="List One"
+        title={labelOne}
         items={listOneItems}
         onItemClick={(item) => handleItemClick(item, "listOne")}
+        mainProperty={mainProperty}
       />
       <ClickableList
-        title="List Two"
+        title={labelTwo}
         items={listTwoItems}
         onItemClick={(item) => handleItemClick(item, "listTwo")}
+        mainProperty={mainProperty}
       />
     </div>
   );

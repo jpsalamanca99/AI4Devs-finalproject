@@ -50,8 +50,10 @@
 
 /* List Styles */
 .list {
+    flex: 1; /* Allow the list to grow and fill available space */
     list-style-type: none;
     padding: 0;
+    margin: 0; /* Remove default margin */
 }
 
 .list-item {
@@ -68,11 +70,14 @@
 
 /* Scrollable List Styles */
 .scrollable-list-container {
-    max-height: 300px; /* Set a maximum height for the scrollable area */
-    overflow-y: auto;  /* Enable vertical scrolling */
+    max-height: 55vh; /* Set maximum height to 50% of the viewport height */
+    overflow-y: scroll;  /* Enable vertical scrolling */
     border: 1px solid var(--secondary-color); /* Optional: Add a border */
     border-radius: 5px; /* Optional: Add rounded corners */
     padding: 10px; /* Optional: Add padding */
+    flex: 1 1; /* Allow the container to take available vertical space */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
 }
 
 body {
@@ -142,4 +147,39 @@ body {
     text-align: left; /* Align cell text to the left */
     padding: 10px; /* Add padding to cells */
     border-bottom: 1px solid var(--secondary-color); /* Add bottom border to cells */
+}
+
+/* Add this new style for the dual clickable lists */
+.dual-clickable-lists {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the lists */
+    flex: 1 1;
+}
+
+/* Add this new style for the create tournament container */
+.create-tournament-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    padding: 20px; /* Add padding */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+/* Ensure the DualClickableLists fill available space */
+.dual-clickable-lists {
+    flex: 1; /* Allow the lists to grow and fill available space */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the lists */
+}
+
+/* Ensure the SubmitButton is at the bottom */
+.submit-button {
+    margin-top: 20px; /* Add margin above the button */
+}
+
+/* Add this new style for the dual clickable lists container */
+.dual-clickable-lists-container {
+    flex: 1; /* Allow the container to grow and fill available space */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    margin: 20px 0; /* Add margin above and below the lists */
 }
