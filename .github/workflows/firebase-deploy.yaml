@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - frontend
 
 jobs:
   deploy:
@@ -25,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Firebase
-        uses: wzieba/Firebase-Hosting-Action@v2.0.0
+        uses: FirebaseExtended/action-hosting-deploy@v0.5.0
         with:
           firebaseServiceAccount: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
           projectId: ai4devs-b657b
