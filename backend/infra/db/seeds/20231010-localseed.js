@@ -1,8 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
+import bcrypt from "bcrypt";
 
 export const up = async ({ sequelize }) => {
   const queryInterface = sequelize.getQueryInterface();
   await queryInterface.sequelize.transaction(async (transaction) => {
+    // Hash the passwords
+    const hashedPassword1 = await bcrypt.hash("12345", 10);
+    const hashedPassword2 = await bcrypt.hash("12345", 10);
+
     await queryInterface.bulkInsert(
       "Organizers",
       [
@@ -10,6 +15,7 @@ export const up = async ({ sequelize }) => {
           id: uuidv4(),
           name: "Organizer 1",
           nid: "NID001",
+          password: hashedPassword1, // Use hashed password
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -17,6 +23,7 @@ export const up = async ({ sequelize }) => {
           id: uuidv4(),
           name: "Organizer 2",
           nid: "NID002",
+          password: hashedPassword2, // Use hashed password
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -41,7 +48,7 @@ export const up = async ({ sequelize }) => {
 export const down = async ({ sequelize }) => {
   const queryInterface = sequelize.getQueryInterface();
   await queryInterface.sequelize.transaction(async (transaction) => {
-    await queryInterface.bulkDelete("Players", null, {transaction});
-    await queryInterface.bulkDelete("Organizers", null, {transaction});
+    await queryInterface.bulkDelete("Players", null, { transaction });
+    await queryInterface.bulkDelete("Organizers", null, { transaction });
   });
 };
