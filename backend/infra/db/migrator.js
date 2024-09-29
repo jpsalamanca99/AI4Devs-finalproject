@@ -11,6 +11,11 @@ const __dirname = path.dirname(__filename);
 
 const connectionString = getConnectionString();
 const { database, host, user, password, port } = parse(connectionString);
+console.log(database);
+console.log(host);
+console.log(user);
+console.log(password);
+console.log(port);
 const sequelize = new Sequelize(database, user, password, {
   host,
   port,
