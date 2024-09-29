@@ -22,8 +22,17 @@ El proyecto busca facilitar la organización de torneos con modelo hibrido, con 
 
 ### **0.4. URL del proyecto:**
 
+URL del proyecto: https://ai4devs-b657b.web.app/
 
-> Puede ser pública o privada, en cuyo caso deberás compartir los accesos de manera segura. Puedes enviarlos a [alvaro@lidr.co](mailto:alvaro@lidr.co) usando algún servicio como [onetimesecret](https://onetimesecret.com/).
+El proyecto tiene creado dos usuarios con las siguientes credenciales
+
+Usuario 1:
+nid: NID001
+contraseña: 12345
+
+Usuario 2:
+nid: NID002
+contraseña: 12345
 
 ### 0.5. URL o archivo comprimido del repositorio
 https://github.com/jpsalamanca99/AI4Devs-finalproject
@@ -63,8 +72,14 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 - Configure un archivo .env con las variables mostradas en el archivo .example.env
 - Utilice el comando <npm run migrator up> para ejecutar las migraciónes en la base de datos
 - Si desea generar datos de prueba utilice el comando <npm run seeder up>. Este comando creara 2 organizadores y 80 jugadores de prueba para utilizar las demás operaciones que expone el API
+- Ejecute la aplicación en ambiente de desarrollo con el comando <npm run local>
 
 #### Frontend
+- Se debe tenr instalado node.js version 20 y npm version 10
+- En una terminal navegue hasta la carpeta frontend del proyecto
+- Utilice el comando <npm install> para instalar las dependencias del proyecto
+- Configure un archivo .env.local con las variables mostradas en el archivo .example.env
+- Ejecute la aplicación con el comando <npm run dev>
 
 
 
@@ -78,7 +93,7 @@ La organizacion de torneos en el club de tenis de mesa WhiteBall en Bogotá es u
 ### **2.2. Descripción de componentes principales:**
 
 #### Frontend
-Fue hecho en node.js usando como libreria principal REACT. Consume el API expuesto por el backend para generar vistas y persistir información.
+Fue hecho en node.js usando como framework Next.js y REACT como libreria principal. Consume el API expuesto por el backend para generar vistas y persistir información.
 
 #### Backend
 Fue hecho en node.js usando como librerias principales express y sequelize. Expone una API REST procesa las peticiones enviadas por el frontend.
@@ -90,17 +105,24 @@ Fue creada usando el motor PostgreSQL. Las tablas se crean utilizando migración
 
 El proyecto consta de cuatro carpetas principales:
 - Una para el backend, que sigue una estructura basica de archivos para las rutas de la API y los controladores.
-- Una carpeta para el frontend que sigue una estructura basica de proyectos basados en REACT para separar vistas de componentes.
+- Una carpeta para el frontend que sigue una estructura basica de proyectos basados en REACT para separar vistas de componentes, intenta seguir el modelo propuesto por atomic design.
 - Una carpeta de infraestructura, que contiene los scripts de configuración del ambiente local y CI/CD
 - Una carpeta de documentación que contiene los diagramas de componentes y entidad-relación al igual que la definición del API en formato swagger
 
 ### **2.4. Infraestructura y despliegue**
 
-> Detalla la infraestructura del proyecto, incluyendo un diagrama en el formato que creas conveniente, y explica el proceso de despliegue que se sigue
+![alternative text](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jpsalamanca99/AI4Devs-finalproject/refs/heads/main/documentation/infraDiagram.txt)
+
+El sistema consta de tres componentes principales, desplegados todos en los servicios de Google Cloud.
+- El frontend esta desplegado en el servicio firebase hosting
+- El backend esta desplegado en el servicio app engine de GCP
+- La base de datos esta montada en una instancia SQL del servicio cloudSQL de GCP
+
+Los despliegues de codigo se realizar automaticamente usando Github actions, los workflow de despliegue estan configurados por aparte, lo que permite realizar despliegues independientes de los componentes. Si el backend es desplegado las migraciones de base de datos se ejecutan automaticamente.
 
 ### **2.5. Seguridad**
 
-> Enumera y describe las prácticas de seguridad principales que se han implementado en el proyecto, añadiendo ejemplos si procede
+Dado que el sistema maneja información publica la gran mayoria de datos, al igual que la comunicación entre los componentes no esta cifrada. Las excepciones a esto son las contraseñas de los usuarios (Tambien llamados organizadores) y la cookie de auntenticación que se envia cuando un usuario se logea.
 
 ---
 
@@ -376,3 +398,9 @@ https://github.com/jpsalamanca99/AI4Devs-finalproject/pull/1#issue-2543690248
 
 **Pull Request 2**
 https://github.com/jpsalamanca99/AI4Devs-finalproject/pull/2
+
+**Pull Request 3**
+https://github.com/jpsalamanca99/AI4Devs-finalproject/pull/3
+
+**Pull Request 4**
+https://github.com/jpsalamanca99/AI4Devs-finalproject/pull/4

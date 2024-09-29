@@ -257,18 +257,82 @@ The structure of the `@backend` folder is modular and organized, allowing for ea
 ### **2.4. Infraestructura y despliegue**
 
 **Prompt 1:**
+Using plantUML create a component diagram that shows three components named: 
+* frontend
+* backend
+* data base
+
+The frontend conects to the backend and the backend to the database
+
+The frontend must be contained in another object named "firebase hosting"
+
+The backend and database must be contained in an object named "GCP"
+
+**Respuesta**
+```
+@startuml
+package "Firebase Hosting" {
+    [Frontend] 
+}
+
+package "GCP" {
+    [Backend] 
+    [Database] 
+}
+
+[Frontend] --> [Backend]
+[Backend] --> [Database]
+@enduml
+```
 
 **Prompt 2:**
+How do i deploy a next.js react app to firebase hosting using github actions
 
-**Prompt 3:**
+**Respuesta**
+To deploy a Next.js app to Firebase Hosting using GitHub Actions, follow these steps:
+Set Up Firebase Hosting:
+- Install Firebase CLI: npm install -g firebase-tools
+- Initialize Firebase in your project: firebase init
+- Choose Hosting and follow the prompts to set up your project.
+Create GitHub Actions Workflow:
+- In your repository, create a directory .github/workflows if it doesn't exist.
+- Create a file named firebase-deploy.yml in that directory.
+Add the Following Configuration:
+```
+name: Deploy to Firebase Hosting
 
-### **2.5. Seguridad**
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch if different
 
-**Prompt 1:**
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-**Prompt 2:**
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-**Prompt 3:**
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify your Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Deploy to Firebase
+        uses: wzieba/Firebase-Hosting-Action@v2.0.0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: your-firebase-project-id
+          channelId: live  # Optional: specify a channel
+```
+
 
 ---
 
