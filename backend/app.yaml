@@ -7,7 +7,7 @@ runtime_config:
   operating_system: "ubuntu22"
   runtime_version: "18"
 env_variables:
-  DB_HOST: '34.46.176.201:5432'
+  DB_HOST: '/cloudsql/ia4devs:us-central1:tournament-organizer-db'
   DB_NAME: 'dev-db'
   DB_USER: 'postgres'
   DB_PASSWORD: 'EQXBHO0esDDARK'
