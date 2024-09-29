@@ -41,7 +41,7 @@ const getContext = async () => {
       getConnectionSettings();
     console.log(database);
     console.log(host);
-    console.log(user);
+    console.log(username);
     console.log(password);
     console.log(port);
     const sequelize = new Sequelize(database, username, password, {
