@@ -33,4 +33,4 @@ jobs:
           firebaseServiceAccount: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
           projectId: ai4devs-b657b
           entryPoint: frontend
-          chanel: live
+          chanelId: live
