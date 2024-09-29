@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run deploy-migrator && node --experimental-specifier-resolution=node app.js",
+    "start": "node --experimental-specifier-resolution=node app.js",
     "local": "nodemon -r dotenv/config --experimental-specifier-resolution=node app.js",
     "migrator": "node -r dotenv/config --experimental-specifier-resolution=node infra/db/migrator.js",
     "deploy-migrator": "node --experimental-specifier-resolution=node infra/db/migrator.js up",
