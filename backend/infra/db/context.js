@@ -38,7 +38,13 @@ const build = (sequelize) => {
 const getContext = async () => {
   if (!context) {
     const connectionString = await getConnectionString();
+    console.log(connectionString)
     const { database, host, user, password, port } = parse(connectionString);
+    console.log(database)
+    console.log(host)
+    console.log(user)
+    console.log(password)
+    console.log(port)
     const sequelize = new Sequelize(database, user, password, {
       host,
       port,

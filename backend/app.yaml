@@ -8,6 +8,7 @@ runtime_config:
   runtime_version: "18"
 env_variables:
   DB_HOST: '/cloudsql/ia4devs:us-central1:tournament-organizer-db'
+  DB_PORT: '5432'
   DB_NAME: 'dev-db'
   DB_USER: 'postgres'
   DB_PASSWORD: 'EQXBHO0esDDARK'
