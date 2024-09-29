@@ -17,11 +17,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Deploy to App Engine
-        id: deploy
-        uses: google-github-actions/deploy-appengine@v0.2.0
+
+      - name: Set up gcloud
+        uses: "google-github-actions/auth@v1.0.0"
         with:
-          deliverables: infra/cicd/backend/app.yaml
-          version: v1
-          project_id: ${{ vars.GCP_PROJECT }}
-          credentials: ${{ vars.GCP_CREDENTIALS }}
+          credentials_json: ${{ vars.GCP_CREDENTIALS }}
+
+      - name: Deploy to Google App Engine
+        run: gcloud app deploy app.yaml --quiet --project ${{ vars.GCP_PROJECT }} --version 1
