@@ -21,13 +21,14 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: cd frontend && npm install
 
       - name: Build Next.js app
-        run: npm run build
+        run: cd frontend && npm run build
 
       - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v0.5.0
         with:
           firebaseServiceAccount: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
           projectId: ai4devs-b657b
+          workingDirectory: frontend
