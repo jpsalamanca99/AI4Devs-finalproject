@@ -27,8 +27,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h1>Tournament Organizer</h1>
+      <p>Login</p>
       <TextInput
         placeholder="NID"
         value={nid}

@@ -51,14 +51,15 @@ const TournamentList = () => {
   }
 
   return (
-    <div>
+    <div className="tournament-list-container">
       <h1>Tournaments</h1>
       <ClickableList
         title="Tournaments"
         items={items}
         onItemClick={handleItemClick}
+        mainProperty={'name'}
       />
-      <PlusButton onClick={handleButtonClick}/>
+      <PlusButton onClick={handleButtonClick} />
     </div>
   );
 };

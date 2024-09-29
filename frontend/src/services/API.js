@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:4000/api";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000/api";
 
 const authenticateOrganizer = async ({ nid, password }) => {
   return await axios.post(
@@ -26,4 +27,12 @@ const playerList = async () => {
   );
 };
 
-export { authenticateOrganizer, tournamentList, playerList };
+const tournamentCreator = async ({ name, date, playerIds, nid }) => {
+  return await axios.post(
+    `${API_BASE_URL}/tournaments/`,
+    { nid, name, date, playerIds },
+    { withCredentials: true }
+  );
+};
+
+export { authenticateOrganizer, tournamentList, playerList, tournamentCreator };

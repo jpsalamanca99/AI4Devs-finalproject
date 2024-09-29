@@ -102,10 +102,6 @@ El proyecto consta de cuatro carpetas principales:
 
 > Enumera y describe las prácticas de seguridad principales que se han implementado en el proyecto, añadiendo ejemplos si procede
 
-### **2.6. Tests**
-
-> Describe brevemente algunos de los tests realizados
-
 ---
 
 ## 3. Modelo de Datos

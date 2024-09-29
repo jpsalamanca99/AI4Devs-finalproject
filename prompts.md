@@ -270,14 +270,6 @@ The structure of the `@backend` folder is modular and organized, allowing for ea
 
 **Prompt 3:**
 
-### **2.6. Tests**
-
-**Prompt 1:**
-
-**Prompt 2:**
-
-**Prompt 3:**
-
 ---
 
 ### 3. Modelo de Datos
@@ -1008,14 +1000,3 @@ Create a React component that fetches and displays the list of registered player
 ## References
 - React Documentation: [React](https://reactjs.org/)
 - Axios for API requests: [Axios](https://axios-http.com/)
-
-
----
-
-### 7. Pull Requests
-
-**Prompt 1:**
-
-**Prompt 2:**
-
-**Prompt 3:**

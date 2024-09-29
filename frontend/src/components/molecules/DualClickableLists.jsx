@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ClickableList from "../atoms/ClickableList.jsx";
 
 const DualClickableLists = ({
@@ -6,18 +6,33 @@ const DualClickableLists = ({
   labelTwo,
   firstItemsSet = [],
   secondItemsSet = [],
-  mainProperty
+  mainProperty,
+  getListOne,
+  getListTwo,
 }) => {
-  const [listOneItems, setListOneItems] = useState(firstItemsSet);
-  const [listTwoItems, setListTwoItems] = useState(secondItemsSet);
+  const [listOne, setListOne] = useState(firstItemsSet);
+  const [listTwo, setListTwo] = useState(secondItemsSet);
+
+  useEffect(() => {
+    if (getListOne) {
+      getListTwo(listOne);
+    }
+  }, [listOne, setListOne]);
+
+  useEffect(() => {
+    if (getListTwo) {
+      getListTwo(listTwo);
+    }
+  }, [listTwo, getListTwo]);
+
 
   const handleItemClick = (item, fromList) => {
     if (fromList === "listOne") {
-      setListOneItems(listOneItems.filter((i) => i !== item));
-      setListTwoItems([...listTwoItems, item]);
+      setListOne(listOne.filter((i) => i !== item));
+      setListTwo([...listTwo, item]);
     } else {
-      setListTwoItems(listTwoItems.filter((i) => i !== item));
-      setListOneItems([...listOneItems, item]);
+      setListTwo(listTwo.filter((i) => i !== item));
+      setListOne([...listOne, item]);
     }
   };
 
@@ -25,13 +40,13 @@ const DualClickableLists = ({
     <div className="dual-clickable-lists"> {/* Added class for styling */}
       <ClickableList
         title={labelOne}
-        items={listOneItems}
+        items={listOne}
         onItemClick={(item) => handleItemClick(item, "listOne")}
         mainProperty={mainProperty}
       />
       <ClickableList
         title={labelTwo}
-        items={listTwoItems}
+        items={listTwo}
         onItemClick={(item) => handleItemClick(item, "listTwo")}
         mainProperty={mainProperty}
       />

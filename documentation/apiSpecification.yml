@@ -355,14 +355,13 @@ components:
           type: array
           items:
             type: string
-        organizerId:
+        nid:
           type: string
-          format: uuid
       required:
         - name
         - date
         - playerIds
-        - organizerId
+        - nid
 
     NewPlayer:
       type: object
