@@ -1,14 +1,9 @@
 import { body, validationResult } from "express-validator";
 import { getContext } from "../../../infra/db/context.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"; // Assuming you are using bcrypt for password hashing
 
-export class OrganizerCreator {
+export class OrganizerAuthenticator {
   static validations = [
-    body("name")
-      .isString()
-      .withMessage("Name must be a string")
-      .notEmpty()
-      .withMessage("Name is required"),
     body("nid")
       .isString()
       .withMessage("NID must be a string")
@@ -31,27 +26,21 @@ export class OrganizerCreator {
   static async run(req, res) {
     try {
       const context = await getContext();
-      const { name, nid, password } = req.body;
+      const { nid, password } = req.body;
 
-      // Hash the password before storing it
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const organizer = await context.Organizer.findOne({ where: { nid } });
 
-      res.status(201).json(
-        await context.sequelize.transaction(async (transaction) => {
-          const newOrganizer = await context.Organizer.create(
-            {
-              name,
-              nid,
-              password: hashedPassword, // Store the hashed password
-            },
-            { transaction }
-          );
+      if (!organizer) {
+        return res.status(404).json({ error: "Organizer not found" });
+      }
 
-          delete newOrganizer.password;
+      const isPasswordValid = await bcrypt.compare(password, organizer.password);
 
-          return newOrganizer;
-        })
-      );
+      if (isPasswordValid) {
+        res.status(200).json({ message: "Authentication successful" });
+      } else {
+        res.status(500).json({ error: "Invalid password" });
+      }
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
