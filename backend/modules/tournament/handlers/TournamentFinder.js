@@ -3,11 +3,11 @@ import { getContext } from "../../../infra/db/context.js";
 
 export class TournamentFinder {
   static validations = [
-    query('organizer')
-      .isUUID()
-      .withMessage('Organizer must be a valid UUID')
+    query("organizerNid")
+      .isString()
+      .withMessage("Organizer NID must be a valid string")
       .notEmpty()
-      .withMessage('Organizer is required'),
+      .withMessage("Organizer NID is required"),
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -20,11 +20,12 @@ export class TournamentFinder {
   static async run(req, res) {
     try {
       const context = await getContext();
-      const { organizer } = req.query;
+      const nid = req.query.organizerNid;
       const tournaments = await context.sequelize.transaction(
         async (transaction) => {
           const allTournaments = await context.Tournament.findAll({
-            where: { organizerId: organizer },
+            where: { "$Organizer.nid$": nid },
+            include: [{ model: context.Organizer, required: true }],
             transaction,
           });
 

@@ -1,0 +1,185 @@
+/* styles/components.css */
+
+/* Variables for color palette */
+:root {
+    --primary-color: #FF3D00; /* Bright Red */
+    --secondary-color: #000000; /* Black */
+    --accent-color: #FFFFFF; /* White */
+    --main-background-color: #2e59aa; /* Dark Gray */
+    --background-color: #121212; /* Dark Gray */
+    --highlight-color: #FFC107; /* Yellow/Gold */
+}
+
+/* Basic Button Styles */
+.button {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Input Styles */
+.input {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    border: 1px solid var(--secondary-color);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Text Styles */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+/* List Styles */
+.list {
+    flex: 1; /* Allow the list to grow and fill available space */
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+}
+
+.list-item {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+/* Hover effect for list items */
+.list-item:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Scrollable List Styles */
+.scrollable-list-container {
+    max-height: 55vh; /* Set maximum height to 50% of the viewport height */
+    overflow-y: scroll;  /* Enable vertical scrolling */
+    border: 1px solid var(--secondary-color); /* Optional: Add a border */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    padding: 10px; /* Optional: Add padding */
+    flex: 1 1; /* Allow the container to take available vertical space */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+}
+
+body {
+    background-color: var(--main-background-color); /* Use the updated variable */
+    margin: 0; /* Remove default margin */
+    font-family: Arial, sans-serif; /* Optional: Set a default font */
+}
+
+/* Round Button Styles */
+.round-button {
+    width: 50px; /* Set the width of the button */
+    height: 50px; /* Set the height of the button */
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Make the button round */
+    background-color: #FF3D00; /* Set the background color */
+    color: white; /* Set the text color */
+    font-size: 24px; /* Set the font size */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s; /* Add transition for hover effect */
+}
+
+.round-button:hover {
+    background-color: #FFC107; /* Change background color on hover */
+}
+
+/* New styles for tabs */
+.tabs {
+    margin: 20px 0;
+}
+
+.tabs button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #FF3D00; /* Primary color */
+    color: white;
+}
+
+.tabs button.active {
+    background-color: #FFC107; /* Highlight color */
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+
+/* Group Table Styles */
+.group-table {
+    width: 100%; /* Make the table take the full width */
+    margin: 20px 0; /* Add margin above and below the table */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+
+.table-header {
+    text-align: left; /* Align header text to the left */
+    background-color: var(--primary-color); /* Optional: Add background color to headers */
+    color: var(--accent-color); /* Optional: Set header text color */
+    padding: 10px; /* Add padding to header cells */
+}
+
+.table-cell {
+    text-align: left; /* Align cell text to the left */
+    padding: 10px; /* Add padding to cells */
+    border-bottom: 1px solid var(--secondary-color); /* Add bottom border to cells */
+}
+
+/* Add this new style for the dual clickable lists */
+.dual-clickable-lists {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the lists */
+    flex: 1 1;
+}
+
+/* Add this new style for the create tournament container */
+.create-tournament-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    padding: 20px; /* Add padding */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+/* Ensure the DualClickableLists fill available space */
+.dual-clickable-lists {
+    flex: 1; /* Allow the lists to grow and fill available space */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the lists */
+}
+
+/* Ensure the SubmitButton is at the bottom */
+.submit-button {
+    margin-top: 20px; /* Add margin above the button */
+}
+
+/* Add this new style for the dual clickable lists container */
+.dual-clickable-lists-container {
+    flex: 1; /* Allow the container to grow and fill available space */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    margin: 20px 0; /* Add margin above and below the lists */
+}
