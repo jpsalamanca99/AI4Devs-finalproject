@@ -7,7 +7,7 @@ import Player from "./models/player.js";
 import Match from "./models/match.js";
 import TournamentPlayer from "./models/tournamentPlayers.js";
 import GroupPlayer from "./models/groupPlayers.js";
-import { getConnectionString } from "./config.js";
+import { getConnectionSettings } from "./config.js";
 
 import pkg from "pg-connection-string";
 
@@ -23,7 +23,7 @@ const build = (sequelize) => {
     Player: Player(sequelize),
     Match: Match(sequelize),
     TournamentPlayer: TournamentPlayer(sequelize),
-    GroupPlayer: GroupPlayer(sequelize)
+    GroupPlayer: GroupPlayer(sequelize),
   };
 
   Object.values(models).forEach((model) => {
@@ -37,15 +37,14 @@ const build = (sequelize) => {
 
 const getContext = async () => {
   if (!context) {
-    const connectionString = await getConnectionString();
-    console.log(connectionString)
-    const { database, host, user, password, port } = parse(connectionString);
-    console.log(database)
-    console.log(host)
-    console.log(user)
-    console.log(password)
-    console.log(port)
-    const sequelize = new Sequelize(database, user, password, {
+    const { host, port, database, username, password } =
+      getConnectionSettings();
+    console.log(database);
+    console.log(host);
+    console.log(user);
+    console.log(password);
+    console.log(port);
+    const sequelize = new Sequelize(database, username, password, {
       host,
       port,
       dialect: "postgres",

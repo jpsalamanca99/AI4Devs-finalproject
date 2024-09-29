@@ -1,5 +1,5 @@
 import { Umzug, SequelizeStorage } from 'umzug';
-import { getConnectionString } from './config.js';
+import { getConnectionSettings } from './config.js';
 import { Sequelize } from 'sequelize';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,9 +9,8 @@ const { parse } = pkg;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const connectionString = getConnectionString();
-const { database, host, user, password, port } = parse(connectionString);
-const sequelize = new Sequelize(database, user, password, {
+const { host, port, database, username, password } = getConnectionSettings();
+const sequelize = new Sequelize(database, username, password, {
   host,
   port,
   dialect: 'postgres',
