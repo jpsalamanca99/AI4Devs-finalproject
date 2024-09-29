@@ -1,0 +1,31 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  deploy:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-latest
+    environment: ${{ needs.define-environment.outputs.current_env }}
+    env:
+      GOOGLE_PROJECT_ID: ${{ vars.GOOGLE_PROJECT_ID }}
+      THE_SA: ${{ vars.THE_SA }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          node-version: '18.x'
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: ${{ secrets[format('WORKLOAD_IDENTITY_PROVIDER_{0}', env.THE_ENV)] }}
+          service_account: ${{ env.THE_SA }}
+      - name: Deploy to Google App Engine
+        run: gcloud app deploy infra/cicd/backend/app.yaml --quiet --project ${{ env.GOOGLE_PROJECT_ID }} --version 1
