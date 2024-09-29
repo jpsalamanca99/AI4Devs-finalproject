@@ -1,14 +1,9 @@
 import { body, validationResult } from "express-validator";
 import { getContext } from "../../../infra/db/context.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"; // Assuming you are using bcrypt for password hashing
 
-export class OrganizerCreator {
+export class OrganizerAuthenticator {
   static validations = [
-    body("name")
-      .isString()
-      .withMessage("Name must be a string")
-      .notEmpty()
-      .withMessage("Name is required"),
     body("nid")
       .isString()
       .withMessage("NID must be a string")
@@ -31,27 +26,28 @@ export class OrganizerCreator {
   static async run(req, res) {
     try {
       const context = await getContext();
-      const { name, nid, password } = req.body;
+      const { nid, password } = req.body;
 
-      // Hash the password before storing it
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const organizer = await context.Organizer.findOne({ where: { nid } });
 
-      res.status(201).json(
-        await context.sequelize.transaction(async (transaction) => {
-          const newOrganizer = await context.Organizer.create(
-            {
-              name,
-              nid,
-              password: hashedPassword, // Store the hashed password
-            },
-            { transaction }
-          );
+      if (!organizer) {
+        return res.status(404).json({ error: "Organizer not found" });
+      }
 
-          delete newOrganizer.password;
-
-          return newOrganizer;
-        })
+      const isPasswordValid = await bcrypt.compare(
+        password,
+        organizer.password
       );
+
+      if (isPasswordValid) {
+          req.session.user = {
+            id: organizer.id,
+            name: organizer.name,
+            nid: organizer.nid,
+          };
+          return res.status(200).json({ message: "Login successful" });
+      }
+      res.status(401).json({ message: "Invalid credentials" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
