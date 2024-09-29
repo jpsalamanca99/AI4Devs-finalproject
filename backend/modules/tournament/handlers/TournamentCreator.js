@@ -21,11 +21,11 @@ export class TournamentCreator {
     body("playerIds.*")
       .isString()
       .withMessage("Each Player ID must be a string"),
-    body("organizerId")
-      .isUUID()
-      .withMessage("Organizer ID must be a valid UUID")
+    body("nid")
+      .isString()
+      .withMessage("NID must be a string")
       .notEmpty()
-      .withMessage("Organizer ID is required"),
+      .withMessage("NID is required"),
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -40,14 +40,20 @@ export class TournamentCreator {
       const context = await getContext();
       res.status(201).json(
         await context.sequelize.transaction(async (transaction) => {
-          const { name, date, playerIds, organizerId } = req.body;
+          const { name, date, playerIds, nid } = req.body;
+
+          // Find the Organizer by NID
+          const organizer = await context.Organizer.findOne({ where: { nid }, transaction });
+          if (!organizer) {
+            return res.status(400).json({ error: "Organizer not found" });
+          }
 
           // Create the Tournament record
           const newTournament = await context.Tournament.create(
             {
               name,
               date,
-              organizerId,
+              organizerId: organizer.id,
             },
             { transaction }
           );
