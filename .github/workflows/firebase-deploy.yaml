@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Manage Variables
+        run: |
+          echo "${{ vars.FRONTEND_VARIABLES }}" >> frontend/.env.production.local
+
       - name: Install dependencies
         run: cd frontend && npm install
 
