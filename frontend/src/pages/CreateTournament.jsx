@@ -50,6 +50,8 @@ const CreateTournament = () => {
         playerIds,
         nid,
       });
+      const newTournamentId = response.data.id;
+      await groupsCreator({ tournamentId: newTournamentId });
       if (response.status === 201) {
         router.push({
           pathname: "/TournamentList",

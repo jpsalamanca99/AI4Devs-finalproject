@@ -6,7 +6,11 @@ export default (sequelize) => {
       Tournament.belongsTo(models.Organizer, { foreignKey: 'organizerId' });
       Tournament.hasMany(models.Group, { foreignKey: 'tournamentId' });
       Tournament.hasMany(models.Bracket, { foreignKey: 'tournamentId' });
-      Tournament.belongsToMany(models.Player, { through: 'TournamentPlayers' });
+      Tournament.belongsToMany(models.Player, { 
+        through: 'TournamentPlayers', 
+        foreignKey: 'tournamentId', // This is the foreign key in the join table for Tournament
+        otherKey: 'playerId' // This is the foreign key in the join table for Player
+      });
     }
   }
 

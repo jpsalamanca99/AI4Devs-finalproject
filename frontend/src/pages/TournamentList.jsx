@@ -6,21 +6,23 @@ import { tournamentList } from "@/services/API.js";
 
 const TournamentList = () => {
   const router = useRouter();
-  const [nid, setNid] = useState(router.query.nid);
-  const [items, setItems] = useState([]);
+  const [nid, setNid] = useState();
+  const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await tournamentList({ nid });
-        
-        if (response.status !== 200) {
-          throw new Error("Network response was not ok");
+        if (nid) {
+          const response = await tournamentList({ nid });
+
+          if (response.status !== 200) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.data;
+          setTournaments(data);
         }
-        const data = await response.data;
-        setItems(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -31,8 +33,15 @@ const TournamentList = () => {
     fetchItems();
   }, [nid]);
 
+  useEffect(() => {
+    setNid(router.query.nid);
+  }, [router.query]);
+
   const handleItemClick = (item) => {
-    alert(`You clicked on ${item}`);
+    router.push({
+      pathname: "/TournamentDetails",
+      query: { nid, tournamentId: item.id },
+    });
   };
 
   const handleButtonClick = () => {
@@ -40,7 +49,7 @@ const TournamentList = () => {
       pathname: "/CreateTournament",
       query: { nid },
     });
-  }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -55,9 +64,9 @@ const TournamentList = () => {
       <h1>Tournaments</h1>
       <ClickableList
         title="Tournaments"
-        items={items}
+        items={tournaments}
         onItemClick={handleItemClick}
-        mainProperty={'name'}
+        mainProperty={"name"}
       />
       <PlusButton onClick={handleButtonClick} />
     </div>

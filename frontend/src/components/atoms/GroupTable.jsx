@@ -1,9 +1,9 @@
 import React from "react";
 
-const GroupTable = ({ name, table }) => {
+const GroupTable = ({ groupNumber, table, groupId }) => {
   return (
     <div>
-      <h3>{name}</h3>
+      <h3>Group {groupNumber}</h3>
       <p>Table: {table}</p>
       <table className="group-table">
         <thead>

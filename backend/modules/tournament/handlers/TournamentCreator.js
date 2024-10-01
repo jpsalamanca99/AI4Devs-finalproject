@@ -69,6 +69,8 @@ export class TournamentCreator {
             transaction,
           });
 
+          
+
           return newTournament;
         })
       );

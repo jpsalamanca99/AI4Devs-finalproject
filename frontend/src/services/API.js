@@ -35,4 +35,36 @@ const tournamentCreator = async ({ name, date, playerIds, nid }) => {
   );
 };
 
-export { authenticateOrganizer, tournamentList, playerList, tournamentCreator };
+const groupsCreator = async ({ tournamentId }) => {
+  return await axios.post(
+    `${API_BASE_URL}/groups/`,
+    { tournamentId },
+    { withCredentials: true }
+  );
+};
+
+const tournamentInfo = async ({ tournamentId }) => {
+  return await axios.get(
+    `${API_BASE_URL}/tournaments/info`,
+    { params: { tournamentId } },
+    { withCredentials: true }
+  );
+};
+
+const groupsList = async ({ tournamentId }) => {
+  return await axios.get(
+    `${API_BASE_URL}/groups/`,
+    { params: { tournamentId } },
+    { withCredentials: true }
+  );
+};
+
+export {
+  authenticateOrganizer,
+  tournamentList,
+  playerList,
+  tournamentCreator,
+  groupsCreator,
+  tournamentInfo,
+  groupsList
+};
