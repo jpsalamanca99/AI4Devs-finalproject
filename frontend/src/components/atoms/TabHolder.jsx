@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const TabHolder = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    console.log(tabs[activeTab]);
+  }, [activeTab]);
 
   if (tabs.length === 0) {
     return <div>No tabs available</div>;

@@ -56,10 +56,10 @@ const TournamentDetails = () => {
   }
 
   return (
-    <div>
-      <h1>Tournament details</h1>
-      <h2>{name}</h2>
-      <p>Date: {date}</p>
+    <div className="tournament-details-container">
+      <h1 className="tournament-title">Tournament details</h1>
+      <h2 className="tournament-title">{name}</h2>
+      <p className="tournament-date">Date: {date}</p>
 
       <TabHolder tabs={tabs} />
     </div>

@@ -195,3 +195,81 @@ body {
     align-items: center; /* Center horizontally */
     margin: 20px; /* Add margin around the container */
 }
+
+/* New styles for TournamentDetails and its children */
+
+/* Tournament Details Container */
+.tournament-details-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    padding: 20px; /* Add padding */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+/* Tournament Title Styles */
+.tournament-title {
+    font-size: 24px; /* Set font size for title */
+    color: var(--primary-color); /* Use primary color */
+    margin-bottom: 10px; /* Add margin below title */
+}
+
+/* Tournament Date Styles */
+.tournament-date {
+    font-size: 18px; /* Set font size for date */
+    color: var(--secondary-color); /* Use secondary color */
+    margin-bottom: 20px; /* Add margin below date */
+}
+
+/* Styles for GroupsTab */
+.groups-tab-container {
+    margin-top: 20px; /* Add margin above the groups tab */
+}
+
+/* Styles for GroupDetails */
+.group-details-container {
+    margin-top: 20px; /* Add margin above the group details */
+}
+
+/* Styles for TabHolder */
+.tabs {
+    margin: 20px 0; /* Add margin above and below tabs */
+}
+
+.tabs button {
+    margin-right: 10px; /* Add margin between buttons */
+    padding: 10px 20px; /* Add padding to buttons */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Round corners */
+    cursor: pointer; /* Change cursor to pointer */
+    background-color: var(--primary-color); /* Use primary color */
+    color: var(--accent-color); /* Use accent color */
+}
+
+.tabs button.active {
+    background-color: var(--highlight-color); /* Highlight color for active tab */
+}
+
+/* Tab Content Styles */
+.tab-content {
+    margin-top: 20px; /* Add margin above tab content */
+}
+
+/* Group Table Styles */
+.group-table {
+    width: 100%; /* Make the table take the full width */
+    margin: 20px 0; /* Add margin above and below the table */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+
+.table-header {
+    text-align: left; /* Align header text to the left */
+    background-color: var(--primary-color); /* Optional: Add background color to headers */
+    color: var(--accent-color); /* Optional: Set header text color */
+    padding: 10px; /* Add padding to header cells */
+}
+
+.table-cell {
+    text-align: left; /* Align cell text to the left */
+    padding: 10px; /* Add padding to cells */
+    border-bottom: 1px solid var(--secondary-color); /* Add bottom border to cells */
+}

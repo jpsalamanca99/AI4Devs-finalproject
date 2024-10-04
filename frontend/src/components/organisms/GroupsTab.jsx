@@ -10,7 +10,6 @@ const GroupsTab = ({ tournamentId }) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      console.log(tournamentId);
       try {
         const response = await groupsList({ tournamentId });
 
@@ -39,7 +38,7 @@ const GroupsTab = ({ tournamentId }) => {
     };
 
     if (tournamentId) fetchItems();
-  }, []);
+  }, [tournamentId]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -50,7 +49,7 @@ const GroupsTab = ({ tournamentId }) => {
   }
 
   return (
-    <div>
+    <div className="groups-tab-container">
       <TabHolder tabs={tabs} />
     </div>
   );

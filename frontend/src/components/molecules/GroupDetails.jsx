@@ -2,12 +2,9 @@ import React from "react";
 import GroupTable from "../atoms/GroupTable";
 
 const GroupDetails = () => {
-
-
   return (
-    <div>
-      <GroupTable/>
-
+    <div className="group-details-container">
+      <GroupTable />
     </div>
   );
 };
