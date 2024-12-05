@@ -67,6 +67,14 @@ const groupsInfo = async ({ groupId }) => {
   );
 };
 
+const tournamentPlayers = async ({ tournamentId }) => {
+  return await axios.get(
+    `${API_BASE_URL}/tournaments/players`,
+    { params: { tournamentId } },
+    { withCredentials: true }
+  );
+};
+
 export {
   authenticateOrganizer,
   tournamentList,
@@ -76,4 +84,5 @@ export {
   tournamentInfo,
   groupsList,
   groupsInfo,
+  tournamentPlayers
 };

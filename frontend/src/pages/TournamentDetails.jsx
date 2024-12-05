@@ -1,5 +1,6 @@
 import TabHolder from "@/components/atoms/TabHolder";
 import GroupsTab from "@/components/organisms/GroupsTab";
+import PlayersTab from "@/components/organisms/PlayersTab";
 import { tournamentInfo } from "@/services/API";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
@@ -36,6 +37,11 @@ const TournamentDetails = () => {
             content: GroupsTab,
             args: { tournamentId },
           },
+          {
+            label: "Players",
+            content: PlayersTab,
+            args: { tournamentId },
+          }
         ]);
       } catch (error) {
         setError(error.message);

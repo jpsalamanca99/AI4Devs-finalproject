@@ -3,6 +3,7 @@ import { TournamentFinder } from "./handlers/TournamentFinder.js";
 import { TournamentCreator } from "./handlers/TournamentCreator.js";
 import { TournamentInfo } from "./handlers/TournamentInfo.js"; // Import the new class
 import isAuthenticated from "../../infra/middleware/authentication.js";
+import { TournamentPlayers } from "./handlers/TournamentPlayers.js"; // Import the new class
 
 const router = express.Router();
 
@@ -28,6 +29,14 @@ router.get(
   isAuthenticated,
   TournamentInfo.validations,
   TournamentInfo.run
+);
+
+// GET players for a tournament
+router.get(
+  "/players",
+  isAuthenticated,
+  TournamentPlayers.validations,
+  TournamentPlayers.run
 );
 
 export default router;
