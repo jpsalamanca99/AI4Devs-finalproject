@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DualClickableLists from "../components/molecules/DualClickableLists.jsx";
 import SubmitButton from "../components/atoms/SubmitButton.jsx";
 import TextInput from "@/components/atoms/TextInput.jsx";
-import { playerList, tournamentCreator } from "../services/API.js";
+import { playerList, tournamentCreator, groupsCreator } from "../services/API.js";
 import { useRouter } from "next/router";
 
 const CreateTournament = () => {

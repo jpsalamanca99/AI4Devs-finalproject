@@ -38,6 +38,11 @@ const TournamentDetails = () => {
             args: { tournamentId },
           },
           {
+            label: "Brackets",
+            content: GroupsTab,
+            args: { tournamentId },
+          },
+          {
             label: "Players",
             content: PlayersTab,
             args: { tournamentId },

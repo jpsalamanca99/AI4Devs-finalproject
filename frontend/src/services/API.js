@@ -75,6 +75,14 @@ const tournamentPlayers = async ({ tournamentId }) => {
   );
 };
 
+const bracketList = async ({ nid }) => {
+  return await axios.get(
+    `${API_BASE_URL}/tournaments/`,
+    { params: { organizerNid: nid } },
+    { withCredentials: true }
+  );
+};
+
 export {
   authenticateOrganizer,
   tournamentList,
@@ -84,5 +92,6 @@ export {
   tournamentInfo,
   groupsList,
   groupsInfo,
-  tournamentPlayers
+  tournamentPlayers,
+  bracketList
 };
