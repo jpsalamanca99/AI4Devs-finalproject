@@ -9,6 +9,11 @@ export default (sequelize) => {
         foreignKey: "groupId",
         otherKey: "playerId",
       });
+      Group.belongsToMany(models.Match, {
+        through: 'GroupMatches',
+        foreignKey: 'groupId',
+        otherKey: 'matchId',
+      });
     }
   }
 

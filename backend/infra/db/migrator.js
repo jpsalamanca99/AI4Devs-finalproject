@@ -1,9 +1,9 @@
-import { Umzug, SequelizeStorage } from 'umzug';
-import { getConnectionSettings } from './config.js';
-import { Sequelize } from 'sequelize';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import pkg from 'pg-connection-string';
+import { Umzug, SequelizeStorage } from "umzug";
+import { getConnectionSettings } from "./config.js";
+import { Sequelize } from "sequelize";
+import path from "path";
+import { fileURLToPath } from "url";
+import pkg from "pg-connection-string";
 
 const { parse } = pkg;
 const __filename = fileURLToPath(import.meta.url);
@@ -13,14 +13,14 @@ const { host, port, database, username, password } = getConnectionSettings();
 const sequelize = new Sequelize(database, username, password, {
   host,
   port,
-  dialect: 'postgres',
-  migrationStoragePath: './migrations'
+  dialect: "postgres",
+  migrationStoragePath: "./migrations",
 });
 const umzug = new Umzug({
   migrations: {
-    glob: ['./migrations/*.js', { cwd: __dirname }],
+    glob: ["./migrations/*.js", { cwd: __dirname }],
     resolve: ({ name, path, context }) => {
-      const getModule = () => import(`file:///${path.replace(/\\/g, '/')}`);
+      const getModule = () => import(`file:///${path.replace(/\\/g, "/")}`);
       return {
         name,
         up: async () => (await getModule()).up(context),

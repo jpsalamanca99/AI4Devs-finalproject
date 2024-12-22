@@ -5,6 +5,16 @@ export default (sequelize) => {
     static associate(models) {
       Match.belongsTo(models.Player, { as: 'PlayerA', foreignKey: 'playerAId' });
       Match.belongsTo(models.Player, { as: 'PlayerB', foreignKey: 'playerBId' });
+      Match.belongsToMany(models.Group, {
+        through: 'GroupMatches',
+        foreignKey: 'matchId',
+        otherKey: 'groupId',
+      });
+      Match.belongsToMany(models.Bracket, {
+        through: 'BracketMatches',
+        foreignKey: 'matchId',
+        otherKey: 'bracketId',
+      });
     }
   }
 

@@ -4,6 +4,11 @@ export default (sequelize) => {
   class Bracket extends Model {
     static associate(models) {
       Bracket.belongsTo(models.Tournament, { foreignKey: 'tournamentId' });
+      Bracket.belongsToMany(models.Match, {
+        through: 'BracketMatches',
+        foreignKey: 'bracketId',
+        otherKey: 'matchId',
+      });
     }
   }
 
