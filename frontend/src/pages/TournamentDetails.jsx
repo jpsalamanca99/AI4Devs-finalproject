@@ -1,4 +1,5 @@
 import TabHolder from "@/components/atoms/TabHolder";
+import BracketsTab from "@/components/organisms/BracketsTab";
 import GroupsTab from "@/components/organisms/GroupsTab";
 import PlayersTab from "@/components/organisms/PlayersTab";
 import { tournamentInfo } from "@/services/API";
@@ -39,14 +40,14 @@ const TournamentDetails = () => {
           },
           {
             label: "Brackets",
-            content: GroupsTab,
+            content: BracketsTab,
             args: { tournamentId },
           },
           {
             label: "Players",
             content: PlayersTab,
             args: { tournamentId },
-          }
+          },
         ]);
       } catch (error) {
         setError(error.message);

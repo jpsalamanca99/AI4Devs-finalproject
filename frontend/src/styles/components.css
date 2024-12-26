@@ -273,3 +273,73 @@ body {
     padding: 10px; /* Add padding to cells */
     border-bottom: 1px solid var(--secondary-color); /* Add bottom border to cells */
 }
+
+/* Tournament Bracket Styles */
+.tournament-bracket {
+    display: flex;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: var(--accent-color);
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 40px;
+}
+
+.match {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.match::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.round:last-child .match::after {
+    display: none;
+}
+
+.match::before {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 25%;
+    height: 50%;
+    width: 2px;
+    background: var(--accent-color);
+}
+
+.player {
+    padding: 10px 20px;
+    min-width: 150px;
+    border: 1px solid var(--secondary-color);
+    margin: 5px 0;
+    background: var(--background-color);
+}
+
+/* Specific heights for each round */
+.round-16 .match {
+    margin: 10px 0;
+}
+
+.round-8 .match {
+    margin: 40px 0;
+}
+
+.round-4 .match {
+    margin: 100px 0;
+}
+
+.round-2 .match {
+    margin: 220px 0;
+}

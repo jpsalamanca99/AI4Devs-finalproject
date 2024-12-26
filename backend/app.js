@@ -6,6 +6,7 @@ import playerRouter from './modules/player/router.js';
 import organizerRouter from './modules/organizer/router.js';
 import tournamentRouter from './modules/tournament/router.js';
 import groupRouter from './modules/group/router.js';
+import bracketRouter from './modules/bracket/router.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -33,6 +34,7 @@ app.use('/api/players', playerRouter);
 app.use('/api/organizers', organizerRouter);
 app.use('/api/tournaments', tournamentRouter);
 app.use('/api/groups', groupRouter);
+app.use('/api/brackets', bracketRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the API service!' });

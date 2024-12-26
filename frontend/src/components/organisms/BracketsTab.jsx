@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { bracketList } from "@/services/API";
+import TournamentBracket from '@/components/molecules/TournamentBrackets';
 
 const BracketsTab = ({ tournamentId }) => {
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,7 @@ const BracketsTab = ({ tournamentId }) => {
 
   return (
     <div className="groups-tab-container">
-      <p>Brackets go here</p>
+      <TournamentBracket />
     </div>
   );
 };

@@ -75,10 +75,10 @@ const tournamentPlayers = async ({ tournamentId }) => {
   );
 };
 
-const bracketList = async ({ nid }) => {
+const bracketList = async ({ tournamentId }) => {
   return await axios.get(
-    `${API_BASE_URL}/tournaments/`,
-    { params: { organizerNid: nid } },
+    `${API_BASE_URL}/brackets/`,
+    { params: { tournamentId } },
     { withCredentials: true }
   );
 };
