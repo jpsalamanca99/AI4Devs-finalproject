@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { bracketList } from "@/services/API";
-import TournamentBracket from '@/components/molecules/TournamentBrackets';
+import TournamentBracket from "@/components/molecules/TournamentBrackets";
 
 const BracketsTab = ({ tournamentId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [brackets, setBrackets] = useState([]);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -14,8 +15,7 @@ const BracketsTab = ({ tournamentId }) => {
         if (response.status !== 200) {
           throw new Error("Network response was not ok");
         }
-        const data = await response.data;
-
+        setBrackets(response.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -36,7 +36,7 @@ const BracketsTab = ({ tournamentId }) => {
 
   return (
     <div className="groups-tab-container">
-      <TournamentBracket />
+      <TournamentBracket brackets={brackets} />
     </div>
   );
 };
