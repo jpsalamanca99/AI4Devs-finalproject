@@ -4,7 +4,6 @@ const TabHolder = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    console.log(tabs[activeTab]);
   }, [activeTab]);
 
   if (tabs.length === 0) {

@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 const TournamentBracket = ({ brackets }) => {
-
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
-    const fetchItems = async () => {
+    const orderItems = async () => {
       try {
-        const response = await bracketList({ tournamentId });
-
-        if (response.status !== 200) {
-          throw new Error("Network response was not ok");
-        }
-        setBrackets(response.data);
+        console.log(brackets);
+        
       } catch (error) {
         setError(error.message);
       } finally {
@@ -22,21 +17,21 @@ const TournamentBracket = ({ brackets }) => {
       }
     };
 
-    if (tournamentId) fetchItems();
-  }, [tournamentId]);
-
-  if (data.length === 0){
-    return <div>The brackets are not defined yet</div>;
-  }
+    if (brackets) orderItems();
+  }, [brackets]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (!loading && data.length === 0) {
+    return <div>The brackets are not defined yet</div>;
+  }
+
   if (error) {
     return <div>Error: {error}</div>;
   }
-  
+
   return (
     <div className="tournament-bracket">
       {/* Round of 16 */}
