@@ -1,10 +1,12 @@
 import React from "react";
 import GroupTable from "../atoms/GroupTable";
+import MatchDetail from "../atoms/MatchDetail";
 
-const GroupDetails = () => {
+const GroupDetails = ({ groupNumber, table, groupId }) => {
   return (
     <div className="group-details-container">
-      <GroupTable />
+      <GroupTable groupNumber={groupNumber} table={table} groupId={groupId}/>
+      <MatchDetail />
     </div>
   );
 };

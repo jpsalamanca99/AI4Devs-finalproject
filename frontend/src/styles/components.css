@@ -343,3 +343,47 @@ body {
 .round-2 .match {
     margin: 220px 0;
 }
+
+/* Match Detail Styles */
+.match-detail-container {
+    padding: 20px;
+    width: 100%;
+}
+
+.match-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--background-color);
+    color: var(--accent-color);
+}
+
+.match-detail-table td {
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+}
+
+.player-cell {
+    width: 32.5%; /* Takes up 32.5% of the width */
+    background-color: var(--background-color);
+    font-weight: bold;
+}
+
+.score-cell {
+    width: 17.5%; /* Two score columns take up 35% total */
+    text-align: center;
+    background-color: var(--main-background-color);
+}
+
+.stats-cell {
+    width: 32.5%; /* Takes up 32.5% of the width */
+    background-color: var(--background-color);
+}
+
+/* Optional hover effects */
+.player-cell:hover, .stats-cell:hover {
+    background-color: var(--main-background-color);
+}
+
+.score-cell:hover {
+    background-color: var(--background-color);
+}

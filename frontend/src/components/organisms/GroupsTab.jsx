@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import GroupTable from "../atoms/GroupTable";
 import TabHolder from "../atoms/TabHolder";
+import GroupDetails from "../molecules/GroupDetails";
 import { groupsList } from "@/services/API";
 
 const GroupsTab = ({ tournamentId }) => {
@@ -21,7 +21,7 @@ const GroupsTab = ({ tournamentId }) => {
           data.map((g) => {
             return {
               label: `Group ${g.group_number}`,
-              content: GroupTable,
+              content: GroupDetails,
               args: {
                 groupNumber: g.group_number,
                 table: g.table,
